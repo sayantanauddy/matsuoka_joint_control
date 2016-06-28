@@ -13,14 +13,15 @@ import math
 # Declare lists to be used for plots
 y1_list = []
 y2_list = []
+y_list = []
 t_list = []
 
 # Tunable parameters, static for now
-a  = 1.5
+a  = 2.5
 s  = 5.0
-b  = 2.5
-Tr = 1.0
-Ta = 15.0
+b  = 2.0
+Tr = 0.75
+Ta = 0.75
 
 # Iteration constants
 step = 0.2
@@ -64,12 +65,13 @@ while(i<count):
     state = matsuoka(state)
     y1_list.append(state[4])
     y2_list.append(state[5])
+    y_list.append(state[4]-state[5])
     t_list.append(i*step)
     i=i+1
 
 # Plot
 plt.figure()
-plt.plot(t_list,y1_list)
-plt.plot(t_list,y2_list)
+plt.plot(t_list,y_list)
+#plt.plot(t_list,y2_list)
 plt.show()
 
