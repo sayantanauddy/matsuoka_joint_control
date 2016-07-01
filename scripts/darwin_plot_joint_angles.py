@@ -55,8 +55,8 @@ class Darwin_Plot_Joint_Angles():
             self.joint_plots[jointname] = []
           
         print self.joint_plots   
-        self.initiate_walk(20,[1,0,0])
-        self.plot_joints()
+        print self.initiate_walk(20,[1,0,0])
+        #self.plot_joints()
         
     def initiate_walk(self, walk_seconds,walk_velocity):
         darwin = Darwin()
