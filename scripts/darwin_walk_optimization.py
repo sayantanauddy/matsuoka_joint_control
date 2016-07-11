@@ -326,7 +326,7 @@ class Darwin_Walk_Optimization():
 
         oscillator_state = []
         count = 0
-        while(count<6):
+        while(count < 6):
             oscillator_state.extend([0.0, 1.0, 0.0, 1.0, 0.0 ,0.0])
             count += 1
             
