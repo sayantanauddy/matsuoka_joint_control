@@ -425,8 +425,7 @@ class Darwin_Walk_Optimization():
         # Default delay of setting angles is 2 seconds
         self.darwin.set_angles_slow(new_angles)
 
-
-        # Reset the robot position        
+        # Reset the robot position
         # Send model to x=0,y=0
         pose = Pose()
         pose.position.z = 0.31
@@ -446,7 +445,6 @@ class Darwin_Walk_Optimization():
             
         rospy.loginfo("Result of model reset: " + str(response))
 
-
         # Reset the distance variable
         self.distance_walked = 0.0
 
@@ -457,7 +455,6 @@ class Darwin_Walk_Optimization():
 
         # Reset the height list
         self.model_polled_z = []
-
 
     # Function to retrieve the current model state - the position and orientation of the robot
     def subscriber_callback_modelstate(self, dummymodelstate):
