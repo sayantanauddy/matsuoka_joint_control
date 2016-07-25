@@ -314,7 +314,7 @@ class Darwin_Walk_Optimization():
         
 
     # Function for Walking using Matsuoka Oscillator
-    def matsuoka_walking_fitness(self,individual,TRIAL_DURATION):
+    def matsuoka_walking_fitness(self, individual):
 
         print 'Individual:' + str(individual)
 
@@ -563,7 +563,7 @@ class Darwin_Walk_Optimization():
             for individual in self.population:
                             
                 # Calculate fitness of individual
-                indiv_fitness = self.matsuoka_walking_fitness(individual, self.TRIAL_DURATION)
+                indiv_fitness = self.matsuoka_walking_fitness(individual)
 
                 # Check pbest (last element of the individual vector)
                 if(indiv_fitness>individual[72]):
