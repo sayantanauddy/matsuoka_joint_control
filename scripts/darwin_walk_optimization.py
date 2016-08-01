@@ -8,7 +8,7 @@
 
 import rospy
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 import math
 import random
 import time
@@ -35,11 +35,11 @@ class Darwin_Walk_Optimization():
         
         # Matsuoka Oscillator related initialization
 
-        self.WEIGHT_BOUNDS = [-512.0,512.0] # Weights of the neural oscillator connections
-        self.Tr_BOUNDS = [0.01,0.075]       # Rise time constant
-        self.Ta_BOUNDS = [0.04,0.75]        # Adaptation time constant
-        self.b_BOUNDS = [1.25,2.0]          # Constant of the Matsuoka Oscillator
-        self.s_BOUNDS = [0.0,5.0]           # Constant of the Matsuoka Oscillator
+        self.WEIGHT_BOUNDS = [1.0,3.0] # Weights of the neural oscillator connections
+        self.Tr_BOUNDS = [0.1,3.75]       # Rise time constant
+        self.Ta_BOUNDS = [0.01,3.75]        # Adaptation time constant
+        self.b_BOUNDS = [1.0,6.0]          # Constant of the Matsuoka Oscillator
+        self.s_BOUNDS = [0.0,10.0]           # Constant of the Matsuoka Oscillator
         self.NUM_WEIGHTS = 20               # Number of weights in the network
         self.VEL_BOUND_PCT = 0.2            # Velocity is at most 20% of the position range
         self.TRIAL_DURATION = 30            # How many seconds should each trial last
@@ -48,12 +48,12 @@ class Darwin_Walk_Optimization():
         
         # PSO specific initialization
         
-        self.POPULATION_SIZE = 10
+        self.POPULATION_SIZE = 100
         # Each individual consists of 24 positions (weights, and oscillator constants), 
         # 24 velocities, 24 PBest positions and 1 PBest score
         self.INDIVIDUAL_VECTOR_SIZE = 73
         self.GBEST_VECTOR_SIZE = 25
-        self.MAX_ITERS = 20
+        self.MAX_ITERS = 200
         self.C1 = 2.0 # Acceleration constant
         self.C2 = 2.0 # Acceleration constant
         # Inertial weight, linearly scales from 0.9 to 0.4 over the entire run
@@ -143,28 +143,27 @@ class Darwin_Walk_Optimization():
         self.log_file = open('/home/sayantan/Knowledge/Independant Studies/Robot Walking/code/robot_walking/data/log_'+str(curr_time)+'_darwin_walk_optimization.log', 'w')
         self.log_file.write('Created log file at ' + str(curr_time) + '\n')
                       
-
         # Initiate the walk optimization        
         self.pso()
 
 
-
     # Function to calculate the next state of the Matsuoka neural oscillators
     def matsuoka(self, individual, state):
-    
-        print state
+
+        print "State: " + str(state)
+        print "Individual: " + str(individual)
 
         # Extract the weights
-        w1  = individual[0]        
-        w2  = individual[1]
-        w3  = individual[2]
-        w4  = individual[3]
-        w5  = individual[4]
-        w6  = individual[5]
-        w7  = individual[6]
-        w8  = individual[7]
-        w9  = individual[8]
-        w10  = individual[9]
+        w1 = individual[0]
+        w2 = individual[1]
+        w3 = individual[2]
+        w4 = individual[3]
+        w5 = individual[4]
+        w6 = individual[5]
+        w7 = individual[6]
+        w8 = individual[7]
+        w9 = individual[8]
+        w10 = individual[9]
         w11 = individual[10]
         w12 = individual[11]
         w13 = individual[12]
@@ -173,14 +172,14 @@ class Darwin_Walk_Optimization():
         w16 = individual[15]
         w17 = individual[16]
         w18 = individual[17]
-        w19 = individual[18]   
-        w20 = individual[19]      
-        
+        w19 = individual[18]
+        w20 = individual[19]
+
         # Extract the network constants
         Tr = individual[20]
         Ta = individual[21]
-        b  = individual[22]
-        s  = individual[23]                                                                                                             
+        b = individual[22]
+        s = individual[23]
        
         # Extract the current states
         # The numbering scheme: For f21 <variable=f><oscillator#=2><1 for extensor, 2 for flexor>
@@ -316,7 +315,12 @@ class Darwin_Walk_Optimization():
     # Function for Walking using Matsuoka Oscillator
     def matsuoka_walking_fitness(self, individual):
 
-        print 'Individual:' + str(individual)
+        joint_plot_actual = []
+        t1 = []
+        t2 = []
+        joint_plot_rectified = []
+
+        print 'Received Individual:' + str(individual)
 
         # Reset the simulation before each walk
         self.reset_simulation()
@@ -327,10 +331,9 @@ class Darwin_Walk_Optimization():
         oscillator_state = []
         count = 0
         while(count < 6):
-            oscillator_state.extend([0.0, 1.0, 0.0, 1.0, 0.0 ,0.0])
+            oscillator_state.extend([0.0, 1.0, 0.0, 1.0, 0.0, 0.0])
             count += 1
-            
-        
+
         # Set the shoulder roll angle and elbow so that arms are at the side
         new_angles = {}
         new_angles['j_high_arm_l'] = 1.50
@@ -350,13 +353,16 @@ class Darwin_Walk_Optimization():
             oscillator_state = self.matsuoka(individual,oscillator_state)
             
             # Shift the positions to the joint origins
-            oscillator_joint_1 = (oscillator_state[0*6 + 4] - oscillator_state[0*6 + 5]) + self.joint_origins['j_thigh2_l']
-            oscillator_joint_2 = (oscillator_state[1*6 + 4] - oscillator_state[1*6 + 5]) + self.joint_origins['j_tibia_l']
-            oscillator_joint_3 = (oscillator_state[2*6 + 4] - oscillator_state[2*6 + 5]) + self.joint_origins['j_ankle1_l']
-            oscillator_joint_4 = (oscillator_state[3*6 + 4] - oscillator_state[3*6 + 5]) + self.joint_origins['j_thigh2_r']
-            oscillator_joint_5 = (oscillator_state[4*6 + 4] - oscillator_state[4*6 + 5]) + self.joint_origins['j_tibia_r']
-            oscillator_joint_6 = (oscillator_state[5*6 + 4] - oscillator_state[5*6 + 5]) + self.joint_origins['j_ankle1_r']
-                        
+            oscillator_joint_1 = (oscillator_state[0*6 + 4] - oscillator_state[0*6 + 5]) # + self.joint_origins['j_thigh2_l']
+            oscillator_joint_2 = (oscillator_state[1*6 + 4] - oscillator_state[1*6 + 5]) #+ self.joint_origins['j_tibia_l']
+            oscillator_joint_3 = (oscillator_state[2*6 + 4] - oscillator_state[2*6 + 5]) # + self.joint_origins['j_ankle1_l']
+            oscillator_joint_4 = (oscillator_state[3*6 + 4] - oscillator_state[3*6 + 5]) # + self.joint_origins['j_thigh2_r']
+            oscillator_joint_5 = (oscillator_state[4*6 + 4] - oscillator_state[4*6 + 5]) #+ self.joint_origins['j_tibia_r']
+            oscillator_joint_6 = (oscillator_state[5*6 + 4] - oscillator_state[5*6 + 5]) # + self.joint_origins['j_ankle1_r']
+
+            joint_plot_actual.append(oscillator_state[5*6 + 4] - oscillator_state[5*6 + 5])
+            t1.append(i*self.STEP_DURATION)
+
             # If joint angles exceed the joint limits, set the joint limit as the joint angle            
             oscillator_joint_1 = self.joint_upper_limits['j_thigh2_l'] if (oscillator_joint_1>self.joint_upper_limits['j_thigh2_l']) else oscillator_joint_1
             oscillator_joint_1 = self.joint_lower_limits['j_thigh2_l'] if (oscillator_joint_1<self.joint_lower_limits['j_thigh2_l']) else oscillator_joint_1                        
@@ -369,26 +375,40 @@ class Darwin_Walk_Optimization():
             oscillator_joint_5 = self.joint_upper_limits['j_tibia_r']  if (oscillator_joint_5>self.joint_upper_limits['j_tibia_r'])  else oscillator_joint_5
             oscillator_joint_5 = self.joint_lower_limits['j_tibia_r']  if (oscillator_joint_5<self.joint_lower_limits['j_tibia_r'])  else oscillator_joint_5            
             oscillator_joint_6 = self.joint_upper_limits['j_ankle1_r'] if (oscillator_joint_6>self.joint_upper_limits['j_ankle1_r']) else oscillator_joint_6
-            oscillator_joint_6 = self.joint_lower_limits['j_ankle1_r'] if (oscillator_joint_6<self.joint_lower_limits['j_ankle1_r']) else oscillator_joint_6            
-           
-            # Set the new angles
-            new_angles['j_thigh2_l'] = oscillator_joint_1
-            new_angles['j_tibia_l']  = oscillator_joint_2
-            new_angles['j_ankle1_l'] = oscillator_joint_3
-            new_angles['j_thigh2_r'] = oscillator_joint_4
-            new_angles['j_tibia_r']  = oscillator_joint_5
-            new_angles['j_ankle1_r'] = oscillator_joint_6                                                            
-                        
-            # The last parameter is the delay, this should match the step size
-            self.darwin.set_angles_slow(new_angles,self.STEP_DURATION)
-            
-            # Calculate the current distance travelled by the robot
-            self.distance_walked = np.sign(self.current_model_x)*math.sqrt((self.current_model_x)*(self.current_model_x) + (self.current_model_y)*(self.current_model_y))
-            
-            # If the robot has fallen, return the distance travelled till now as the fitness score
-            if(self.has_fallen): return self.distance_walked
-            
-            i=i+1
+            oscillator_joint_6 = self.joint_lower_limits['j_ankle1_r'] if (oscillator_joint_6<self.joint_lower_limits['j_ankle1_r']) else oscillator_joint_6
+
+            joint_plot_rectified.append(oscillator_joint_6)
+            t2.append(i*self.STEP_DURATION)
+
+            print "Joint angles:"
+            print "[[" + str(oscillator_joint_1) + ", " + str(oscillator_joint_2) + ", " + str(oscillator_joint_3) + ", " + str(oscillator_joint_4) + ", " + str(oscillator_joint_5) + ", " + str(oscillator_joint_6) + "]]"
+
+
+            if (i*self.STEP_DURATION > 5.0):
+                # Set the new angles
+                new_angles['j_thigh2_l'] = oscillator_joint_1
+                new_angles['j_tibia_l']  = oscillator_joint_2
+                new_angles['j_ankle1_l'] = oscillator_joint_3
+                new_angles['j_thigh2_r'] = oscillator_joint_4
+                new_angles['j_tibia_r']  = oscillator_joint_5
+                new_angles['j_ankle1_r'] = oscillator_joint_6
+
+                # The last parameter is the delay, this should match the step size
+                self.darwin.set_angles_slow(new_angles,self.STEP_DURATION)
+
+                # Calculate the current distance travelled by the robot
+                self.distance_walked = np.sign(self.current_model_x)*math.sqrt((self.current_model_x)*(self.current_model_x) + (self.current_model_y)*(self.current_model_y))
+
+                # If the robot has fallen, return the distance travelled till now as the fitness score
+                if(self.has_fallen):
+                    #plt.figure()
+                    #plt.plot(t1, joint_plot_actual)
+                    #plt.plot(t2, joint_plot_rectified)
+                    #plt.show()
+                    return self.distance_walked
+
+
+            i = i + 1
             
         # If the trial duration has ended return the distance travelled as the fitness score
         return self.distance_walked
@@ -455,6 +475,9 @@ class Darwin_Walk_Optimization():
 
         # Reset the height list
         self.model_polled_z = []
+
+        # Reset the robot fall detection flag
+        self.has_fallen = False
 
     # Function to retrieve the current model state - the position and orientation of the robot
     def subscriber_callback_modelstate(self, dummymodelstate):
@@ -554,8 +577,7 @@ class Darwin_Walk_Optimization():
         # Main PSO logic     
         iteration = 0
         while(iteration < self.MAX_ITERS):
-            
-            
+
             # Set the linearly scaled inertial weight
             w = self.INERTIAL_WEIGHT_BOUNDS[1] - (iteration*(self.INERTIAL_WEIGHT_BOUNDS[1] - self.INERTIAL_WEIGHT_BOUNDS[0])/self.MAX_ITERS)
 

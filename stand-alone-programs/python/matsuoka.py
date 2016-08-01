@@ -17,7 +17,8 @@ y_list = []
 t_list = []
 
 # Tunable parameters, static for now
-a  = 2.5
+a12 = 2.5
+a21 = 2.8
 s  = 5.0
 b  = 2.0
 Tr = 0.75
@@ -36,14 +37,15 @@ def matsuoka(state):
     f2 = state[3]
     y1 = state[4]
     y2 = state[5]
-    
+
+    print "[[" + str(x1) + ", " + str(x2) + ", " + str(f1) + ", " + str(f2) + ", " + str(y1) + ", " + str(y2) + "]]"
         
-    x1_d = ((-1.0*a*y2) + (s) - (b*f1) - (x1))/float(Tr)
-    x2_d = ((-1.0*a*y1) + (s) - (b*f2) - (x2))/float(Tr)    
+    x1_d = ((-1.0*a12*y2) + (s) - (b*f1) - (x1))/float(Tr)
+    x2_d = ((-1.0*a21*y1) + (s) - (b*f2) - (x2))/float(Tr)
     
     x1 = x1 + step*x1_d
     x2 = x2 + step*x2_d
-    
+
     y1 = max(0.0, x1)
     y2 = max(0.0, x2)
     
