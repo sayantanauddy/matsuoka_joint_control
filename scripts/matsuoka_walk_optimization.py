@@ -28,7 +28,7 @@ class DarwinWalkOptimization():
 
         # Matsuoka Oscillator related initialization
 
-        self.WEIGHT_BOUNDS = [0.5, 2.5]  # Weights of the neural oscillator connections
+        self.WEIGHT_BOUNDS = [0.5, 7.5]  # Weights of the neural oscillator connections
         self.Tr1_BOUNDS = [0.25, 1.5]  # Rise time constant
         self.Tr2_BOUNDS = [0.25, 0.75]  # Rise time constant
         self.Ta1_BOUNDS = [0.25, 1.5]  # Adaptation time constant
@@ -52,18 +52,22 @@ class DarwinWalkOptimization():
 
         # Hashmap of joint origins
         self.joint_origins = {}
+        self.joint_origins['j_thigh1_l'] = -0.524
         self.joint_origins['j_thigh2_l'] = 0.611
         self.joint_origins['j_tibia_l'] = -1.134
         self.joint_origins['j_ankle1_l'] = 0.0
+        self.joint_origins['j_thigh1_r'] = 0.524
         self.joint_origins['j_thigh2_r'] = -0.611
         self.joint_origins['j_tibia_r'] = 1.134
         self.joint_origins['j_ankle1_r'] = 0.0
 
         # Hashmap of joint upper limits
         self.joint_upper_limits = {}
+        self.joint_upper_limits['j_thigh1_l'] = 0.0
         self.joint_upper_limits['j_thigh2_l'] = 1.745
         self.joint_upper_limits['j_tibia_l'] = 0.0
         self.joint_upper_limits['j_ankle1_l'] = 1.047
+        self.joint_upper_limits['j_thigh1_l'] = 0.0
         self.joint_upper_limits['j_thigh2_r'] = 0.524
         self.joint_upper_limits['j_tibia_r'] = 2.269
         self.joint_upper_limits['j_ankle1_r'] = 1.047
