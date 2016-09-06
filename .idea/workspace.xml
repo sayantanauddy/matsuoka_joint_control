@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b652de5e-9924-470d-9288-0aa61f9773e0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/log_20160731202114_matsuoka_walk_optimization.log" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/matsuoka_walk_optimization.py" afterPath="$PROJECT_DIR$/scripts/matsuoka_walk_optimization.py" />
     </list>
     <ignored path="robot_walking.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -499,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1469444672170</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added script for lateral and saggital movements">
+      <created>1473150262318</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1473150262319</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -557,7 +562,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Minor edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor edit" />
+    <MESSAGE value="Added script for lateral and saggital movements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added script for lateral and saggital movements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
