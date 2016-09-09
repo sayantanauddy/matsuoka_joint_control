@@ -1,0 +1,24 @@
+Created log file at 20160906011619
+
+Constants and Parameters: 
+###########################################
+WEIGHT_BOUNDS = [0.5, 7.5]
+Tr1_BOUNDS = [0.25, 1.5]
+Tr2_BOUNDS = [0.25, 0.75]
+Ta1_BOUNDS = [0.25, 1.5]
+Ta2_BOUNDS = [0.25, 0.75]
+b_BOUNDS = [1.0, 8.0]
+s_BOUNDS = [1.0, 3.0]
+TRIAL_DURATION = 30
+STEP_DURATION = 0.2
+POPULATION_SIZE = 50
+MAX_ITERS = 100
+VEL_BOUND_PCT = 0.2
+C1 = 2.0
+C2 = 2.0
+INERTIAL_WEIGHT_BOUNDS = [0.4, 0.9]
+###########################################
+
+[20160906011619] ===========================
+[20160906011619] ---------------------------
+[20160906011619] Executing iteration number: 0 Individual number: 0
