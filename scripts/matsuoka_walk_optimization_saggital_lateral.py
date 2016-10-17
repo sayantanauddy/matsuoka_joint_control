@@ -40,7 +40,7 @@ class DarwinWalkOptimization():
 
         # PSO specific initialization
 
-        self.POPULATION_SIZE = 10
+        self.POPULATION_SIZE = 30
         self.MAX_ITERS = 100
         self.VEL_BOUND_PCT = 0.2  # Velocity is at most 20% of the position range
         self.C1 = 2.0  # Acceleration constant
@@ -267,10 +267,10 @@ class DarwinWalkOptimization():
         y20 = state[59]
 
         # Hip neurons
-        x1_d = ((-1.0 * a1 * y2) - (a1 * y3) + (s) - (b * f1) - (x1)) / float(Tr1)
-        x2_d = ((-1.0 * a1 * y1) - (a1 * y4) + (s) - (b * f2) - (x2)) / float(Tr1)
-        x3_d = ((-1.0 * a1 * y1) - (a1 * y4) + (s) - (b * f3) - (x3)) / float(Tr1)
-        x4_d = ((-1.0 * a1 * y2) - (a1 * y3) + (s) - (b * f4) - (x4)) / float(Tr1)
+        x1_d = ((-1.0 * a2 * y2) - (a1 * y3) + (s) - (b * f1) - (x1)) / float(Tr1)
+        x2_d = ((-1.0 * a2 * y1) - (a1 * y4) + (s) - (b * f2) - (x2)) / float(Tr1)
+        x3_d = ((-1.0 * a1 * y1) - (a2 * y4) + (s) - (b * f3) - (x3)) / float(Tr1)
+        x4_d = ((-1.0 * a1 * y2) - (a2 * y3) + (s) - (b * f4) - (x4)) / float(Tr1)
 
         # Knee neurons
         x5_d = ((-1.0 * a3 * y6) - (a5 * y1) + (s) - (b * f5) - (x5)) / float(Tr2)
@@ -397,7 +397,7 @@ class DarwinWalkOptimization():
 
         # Set initial state - [x1-20, f1-20, y1-20]
         state = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,  # x1-20
-                 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0,  # f1-20
+                 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0,  # f1-20
                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, ]  # y1-20
 
         # Set the shoulder roll angle and elbow so that arms are at the side
@@ -489,7 +489,7 @@ class DarwinWalkOptimization():
             if (i * self.STEP_DURATION > 10):
                 # Hip
                 new_angles['j_thigh1_l'] = hip_left_lateral
-                new_angles['j_thigh1_r'] = hip_right_lateral
+                new_angles['j_thigh1_r'] = -hip_right_lateral
 
                 new_angles['j_thigh2_l'] = hip_left
                 new_angles['j_thigh2_r'] = hip_right
@@ -503,7 +503,7 @@ class DarwinWalkOptimization():
                 new_angles['j_ankle1_r'] = ankle_right
 
                 new_angles['j_ankle2_l'] = ankle_left_lateral
-                new_angles['j_ankle2_r'] = ankle_right_lateral
+                new_angles['j_ankle2_r'] = -ankle_right_lateral
                 
                 # Set the robot joint angles
                 self.darwin.set_angles_slow(new_angles, self.STEP_DURATION)
