@@ -4,7 +4,7 @@ Repository for Independent Study - Sayantan Auddy
 ## Setup instructions - Nao in VREP + naoqi and choreographe
 
 1.  Download VREP from http://www.coppeliarobotics.com/downloads.html
-2.  Join the Aldebaran developer program. Register at https://community.ald.softbankrobotics.com/en/developerprogram
+2.  Join the Aldebaran developer program. Register at https://community.ald.softbankrobotics.com/en/developerprogram. After successful registration, you will receive a developers license to use choreographe. This license will be required when choreographe is started later on.
 3.  After registration, download the following from https://community.ald.softbankrobotics.com/en/resources/software/language/en-gb:
     1. Choregraphe 2.1.4
     2. Python 2.7 SDK 2.1.4 
