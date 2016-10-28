@@ -10,8 +10,6 @@ function psi_t = matsuoka_torque(~, t, q, qd)
     h_psi = 5;
     theta_star = 0.0;
     
-    step_time = t;
-
     global psi_i;
     global psi_j;
     global phi_i;
@@ -43,8 +41,7 @@ function psi_t = matsuoka_torque(~, t, q, qd)
     phi_j = phi_j + dphi_j*step_time;
     
     % Calculate the output torque
-    psi_1 = (max([0, psi_i]) - max([0, psi_j]));
-    psi_2 = (max([0, psi_i]) - max([0, psi_j]));
+    psi_1 = h_psi*(max([0, psi_i]) - max([0, psi_j]));
     
     psi_t = [psi_1 0];
     
