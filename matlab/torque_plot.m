@@ -7,7 +7,7 @@ t=0.0;
 while t<=50
     t = t + 0.01;
     tau = matsuoka_torque(0,t,0,0);
-    y = [y tau(1)];
+    y = [y tau];
 end
 
 x = [0:0.01:50];
