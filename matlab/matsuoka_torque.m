@@ -1,6 +1,8 @@
-% Function to compute the desired torque at each time step
-% using the equations for the matsuoka osccillator
 function psi_t = matsuoka_torque(t, q)
+% 
+%   Function to compute the desired torque at each time step
+%   using the equations for the matsuoka osccillator
+
     % Oscillator constants
     t1 = 0.05;
     t2 = 0.125;
@@ -8,7 +10,6 @@ function psi_t = matsuoka_torque(t, q)
     eta = 2.5;
     sigma = 1.5;
     h_psi = 5.0;
-    theta_star = -5.0;
    
     % State variables of the oscillator
     % Implemented as global variables so that these persist between
@@ -21,8 +22,10 @@ function psi_t = matsuoka_torque(t, q)
     global u_j;
     global time_now;
     global time_prev;
-    global time_now_list;
     global torque_list;
+    
+    % Mean position of oscillation of the joint angle
+    global theta_star;
     
     % Calculate the time delta
     time_now = t;
