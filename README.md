@@ -1,6 +1,8 @@
 # robot_walking
 Repository for Independent Study - Sayantan Auddy
 
+Temporary notes - To be sorted and finalized later
+
 ## Setup instructions - Nao in VREP + naoqi and choreographe
 
 1.  Download VREP from http://www.coppeliarobotics.com/downloads.html
@@ -24,4 +26,13 @@ Give all the informations needed (IPs and Ports) and wait until NAO is listening
 13. In choreograph, set some robot movements. These movements will be reproduced in VREP as well.
 
 [Setps 7-13 are from https://github.com/PierreJac/Project-NAO-Control]
+
+## Nao Joint Control API
+1. http://doc.aldebaran.com/2-1/naoqi/motion/control-joint-api.html#ALMotionProxy::setAngles__AL::ALValueCR.AL::ALValueCR.floatCR
+2. http://doc.aldebaran.com/1-14/naoqi/motion/control-joint-api.html
+
+## How to call Python functions from Matlab
+1. Refer to instructions at http://de.mathworks.com/help/matlab/matlab_external/call-user-defined-custom-module.html and https://de.mathworks.com/help/matlab/matlab_external/call-modified-python-module.html#zmw57dd0e3028.
+2. Example script: matlab/callPython.m and matlab/nao.py
+
 

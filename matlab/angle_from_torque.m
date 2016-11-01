@@ -22,7 +22,7 @@ global time_now;
 % List used for plotting the torques
 global torque_list;
 
-theta_star = -5.0;
+theta_star = 0.0;
 torque_list = [];
 time_prev = 0;
 time_now = 0;
@@ -34,7 +34,7 @@ u_i = 2;
 u_j = 2;
 
 % Set the time steps
-t = [0:0.001:20];
+t = [0:0.01:20];
 
 % Solve the differential equations of the inertial mechanical system
 % Use custom ODE solver which uses fixed time steps

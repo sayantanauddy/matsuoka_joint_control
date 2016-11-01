@@ -31,7 +31,7 @@ function psi_t = matsuoka_torque(t, q)
     time_now = t;
     step_time = time_now - time_prev;
     time_prev = time_now;
-
+    
     % Calculate the proprioceptive feedback
     ref = q - theta_star;
         
