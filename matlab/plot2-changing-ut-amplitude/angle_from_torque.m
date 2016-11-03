@@ -36,10 +36,6 @@ u_j = 1;
 global theta_star;
 theta_star = 0.0;
 
-% Desired time period of joint oscillations
-global T_joint;
-T_joint= 2;
-
 % Variables required to calculate the time delta
 global time_prev;
 global time_now;
@@ -92,3 +88,13 @@ ylabel('torque (Nm)');
 set(gca,'fontsize',20);
 hold off;
 
+figure;
+plot(3);
+hold on;
+p4 = plot(t,ut_list);
+p4(1).LineWidth = 2;
+legend([p4],'tonic input');
+xlabel('time (s)');
+ylabel('Arbitrary unit');
+set(gca,'fontsize',20);
+hold off;

@@ -36,10 +36,6 @@ u_j = 1;
 global theta_star;
 theta_star = 0.0;
 
-% Desired time period of joint oscillations
-global T_joint;
-T_joint= 2;
-
 % Variables required to calculate the time delta
 global time_prev;
 global time_now;
@@ -54,10 +50,6 @@ torque_list = [];
 global avg_position;
 avg_position = [];
 
-% List for ut
-global ut_list;
-ut_list = [];
-
 % Set the time steps
 t = [0:0.01:30];
 
@@ -67,6 +59,7 @@ t = [0:0.01:30];
 % back in time to adjust the time step. This causes problems in the state
 % variables of the matsuoka oscillator.
 y=ode1(@inertial_ode,t,[0; 0]);
+
 
 % Plot the results
 
@@ -86,9 +79,8 @@ plot(2);
 hold on;
 p3 = plot(t,torque_list);
 p3(1).LineWidth = 2;
-legend([p3],'torque');
+legend([p3],'torque','g');
 xlabel('time (s)');
 ylabel('torque (Nm)');
 set(gca,'fontsize',20);
 hold off;
-

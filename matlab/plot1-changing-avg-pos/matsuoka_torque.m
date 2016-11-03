@@ -24,27 +24,18 @@ function psi_t = matsuoka_torque(t, q)
     global time_prev;
     global torque_list;
     global avg_position;
-    global ut_list;
-    global T_joint;
     
     % Mean position of oscillation of the joint angle
     global theta_star;
     
-    if t<=15
-        T_joint = 0.1;
-    elseif t<=30
-        T_joint = 3.0;
-        disp('-----------------------------');
-    end    
-    
-    %T_joint = 1.5971;
-    
-    t1 = (2.13 + 0.6804*T_joint + sqrt(4.512 + 2.685*T_joint))/10;
-    t2 = 2.5*t1;
-    disp(T_joint);
-    disp(t1);
-    disp(t2);
-    
+    % To change average position with time
+    if t<=10
+        theta_star = 0.0;
+    elseif t>10 & t<=20
+        theta_star = 1.0;
+    elseif t>20
+        theta_star = -1.0;
+    end
     
     % Calculate the time delta
     time_now = t;
@@ -78,9 +69,6 @@ function psi_t = matsuoka_torque(t, q)
     
     %List for average position
     avg_position = [avg_position theta_star];
-    
-    % List for ut
-    ut_list = [ut_list u_i]; %u_i=u_j=u_t
     
 end
 
