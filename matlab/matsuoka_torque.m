@@ -1,4 +1,4 @@
-function psi_t = matsuoka_torque(t, q)
+function [psi_t_l,psi_t_r] = matsuoka_torque(t, q_l, q_r)
 % 
 %   Function to compute the desired torque at each time step
 %   using the equations for the matsuoka osccillator
@@ -9,34 +9,39 @@ function psi_t = matsuoka_torque(t, q)
     global beta;
     global eta;
     global sigma;
+    global mu;
+    global nu;  
     global h_psi;
    
     % State variables of the oscillator
     % Implemented as global variables so that these persist between
     % invocations
-    global psi_i;
-    global psi_j;
-    global phi_i;
-    global phi_j;
-    global u_i;
-    global u_j;
+    global psi_l_i;
+    global psi_l_j;
+    global phi_l_i;
+    global phi_l_j;
+    global u_l_i;
+    global u_l_j;
+    
+    global psi_r_i;
+    global psi_r_j;
+    global phi_r_i;
+    global phi_r_j;
+    global u_r_i;
+    global u_r_j;
+
     global time_now;
     global time_prev;
-    global torque_list;
-    global avg_position;
-    global ut_list;
+    global torque_list_l;
+    global torque_list_r;
+    global avg_position_l;
+    global avg_position_r;
+    global ut_list_l;
+    global ut_list_r;
     
     % Mean position of oscillation of the joint angle
     global theta_star;
-        
-    if t<=20
-        t1 = 0.3;
-    elseif t<=40
-        t1 = 0.6;
-    elseif t<=60
-        t1 = 0.9;        
-    end    
-        
+    
     t2 = 2.5*t1;
     u_t = 1;
     u_i= u_t;
@@ -48,35 +53,50 @@ function psi_t = matsuoka_torque(t, q)
     time_prev = time_now;
 
     % Calculate the proprioceptive feedback
-    ref = q - theta_star;
+    %ref_l = q_l - theta_star;
+    %ref_r = q_r - theta_star;
     
     % The oscillator differential equations
-    dpsi_i = (-psi_i -(beta*phi_i) -eta*max([0,psi_j])  -sigma*max([0, -ref]) + u_i)*1/t1;
-    dpsi_j = (-psi_j -(beta*phi_j) -eta*max([0,psi_i])  -sigma*max([0, ref])+ u_j)*1/t1;
+    dpsi_l_i = (-psi_l_i -(beta*phi_l_i) -eta*max([0,psi_l_j])  -sigma*max([0, -(q_l - theta_star)]) - mu*max([0, -(q_r - theta_star)]) - nu*max([0, (q_r - theta_star)]) + u_i)*1/t1;
+    dpsi_l_j = (-psi_l_j -(beta*phi_l_j) -eta*max([0,psi_l_i])  -sigma*max([0, (q_l - theta_star)])  - mu*max([0, (q_r - theta_star)]) - nu*max([0, -(q_r - theta_star)]) + u_j)*1/t1;
+
+    dpsi_r_i = (-psi_r_i -(beta*phi_r_i) -eta*max([0,psi_r_j])  -sigma*max([0, -(q_r - theta_star)]) - mu*max([0, -(q_l - theta_star)]) - nu*max([0, (q_l - theta_star)]) + u_i)*1/t1;
+    dpsi_r_j = (-psi_r_j -(beta*phi_r_j) -eta*max([0,psi_r_i])  -sigma*max([0, (q_r - theta_star)])  - mu*max([0, (q_l - theta_star)]) - nu*max([0, -(q_l - theta_star)]) + u_j)*1/t1;
 
     % Calculate next state
-    psi_i = psi_i + dpsi_i* step_time;
-    psi_j = psi_j + dpsi_j* step_time;
+    psi_l_i = psi_l_i + dpsi_l_i* step_time;
+    psi_l_j = psi_l_j + dpsi_l_j* step_time;
+    
+    psi_r_i = psi_r_i + dpsi_r_i* step_time;
+    psi_r_j = psi_r_j + dpsi_r_j* step_time;
 
     % Calculate derivative of the state variable
-    dphi_i = (-phi_i + max([0, psi_i]))*1/t2;
-    dphi_j = (-phi_j + max([0, psi_j]))*1/t2;
+    dphi_l_i = (-phi_l_i + max([0, psi_l_i]))*1/t2;
+    dphi_l_j = (-phi_l_j + max([0, psi_l_j]))*1/t2;
+    
+    dphi_r_i = (-phi_r_i + max([0, psi_r_i]))*1/t2;
+    dphi_r_j = (-phi_r_j + max([0, psi_r_j]))*1/t2;
     
     % Calculate the next state
-    phi_i = phi_i + dphi_i*step_time;
-    phi_j = phi_j + dphi_j*step_time;
+    phi_l_i = phi_l_i + dphi_l_i*step_time;
+    phi_l_j = phi_l_j + dphi_l_j*step_time;
+    
+    phi_r_i = phi_r_i + dphi_r_i*step_time;
+    phi_r_j = phi_r_j + dphi_r_j*step_time;
 
     % Calculate the output torque
-    psi_t = h_psi*(max([0, psi_i]) - max([0, psi_j]));
+    psi_t_l = h_psi*(max([0, psi_l_i]) - max([0, psi_l_j]));
+    psi_t_r = h_psi*(max([0, psi_r_i]) - max([0, psi_r_j]));
     
     % List used for plotting the torques
-    torque_list = [torque_list psi_t];
+    torque_list_l = [torque_list_l psi_t_l];
+    torque_list_r = [torque_list_r psi_t_r];
     
     %List for average position
-    avg_position = [avg_position theta_star];
+    avg_position_l = [avg_position_l theta_star];
     
     % List for ut
-    ut_list = [ut_list u_i]; %u_i=u_j=u_t
+    ut_list_l = [ut_list_l u_i]; %u_i=u_j=u_t
     
 end
 

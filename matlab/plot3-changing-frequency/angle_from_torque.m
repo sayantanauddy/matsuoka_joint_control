@@ -4,51 +4,33 @@
 clearvars;
 clearvars -global;
 
-% Oscillator constants for oscillator 1
+% Oscillator constants
 global t1;
 global t2;
 global beta;
 global eta;
 global sigma;
-global mu;
-global nu;
 global h_psi;
 t1 = 0.25;
 t2 = 2.5*t1;
 beta = 2.5;
 eta = 2.5;
 sigma = 1.5;
-mu = 0.75;
-nu = 0.49
 h_psi = 5.0;
 
-% State variables of oscillator 1
-global psi_l_i;
-global psi_l_j;
-global phi_l_i;
-global phi_l_j;
-global u_l_i;
-global u_l_j;
-psi_l_i = 0.0;
-psi_l_j = 1.0;
-phi_l_i = 0.0;
-phi_l_j = 1.0;
-u_l_i = 1;
-u_l_j = 1;
-
-% State variables of oscillator 2
-global psi_r_i;
-global psi_r_j;
-global phi_r_i;
-global phi_r_j;
-global u_r_i;
-global u_r_j;
-psi_r_i = 0.0;
-psi_r_j = 1.0;
-phi_r_i = 0.0;
-phi_r_j = 1.0;
-u_r_i = 1;
-u_r_j = 1;
+% State variables of the oscillator
+global psi_i;
+global psi_j;
+global phi_i;
+global phi_j;
+global u_i;
+global u_j;
+psi_i = 0.0;
+psi_j = 1.0;
+phi_i = 0.0;
+phi_j = 1.0;
+u_i = 1;
+u_j = 1;
 
 % Mean position of oscillation of the joint angle
 global theta_star;
@@ -65,22 +47,16 @@ time_prev = 0;
 time_now = 0;
 
 % List used for plotting the torques
-global torque_list_l;
-torque_list_l = [];
-global torque_list_r;
-torque_list_r = [];
+global torque_list;
+torque_list = [];
 
 % List for average position
-global avg_position_l;
-avg_position_l = [];
-global avg_position_r;
-avg_position_r = [];
+global avg_position;
+avg_position = [];
 
 % List for ut
-global ut_list_l;
-ut_list_l = [];
-global ut_list_r;
-ut_list_r = [];
+global ut_list;
+ut_list = [];
 
 % Set the time steps
 t = [0:0.01:60];
@@ -90,14 +66,14 @@ t = [0:0.01:60];
 % Matlab's in-built ODE solver uses variable time steps and sometimes goes
 % back in time to adjust the time step. This causes problems in the state
 % variables of the matsuoka oscillator.
-y=ode1(@inertial_ode,t,[0; 0; 0; 0]);
+y=ode1(@inertial_ode,t,[0; 0]);
 
 % Plot the results
 
 hold on;
 plot(1);
 p1 = plot(t,y(:,1),'b');
-p2 = plot(t,y(:,3),'r');
+p2 = plot(t,avg_position,'r');
 p1(1).LineWidth = 2;
 p2(1).LineWidth = 2;
 xlabel('time (s)');
@@ -107,5 +83,17 @@ legend([p1,p2],'joint angle', 'average position');
 %grid on;
 %grid minor;
 
+figure;
+plot(2);
+hold on;
+p3 = plot(t,torque_list);
+p3(1).LineWidth = 2;
+legend([p3],'torque');
+xlabel('time (s)');
+ylabel('torque (Nm)');
+set(gca,'fontsize',20);
+hold off;
+%grid on;
+%grid minor;
 
 
