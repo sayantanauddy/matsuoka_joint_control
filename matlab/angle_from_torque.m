@@ -59,7 +59,7 @@ global ut_list;
 ut_list = [];
 
 % Set the time steps
-t = [0:0.01:30];
+t = [0:0.01:60];
 
 % Solve the differential equations of the inertial mechanical system
 % Use custom ODE solver which uses fixed time steps
@@ -80,6 +80,8 @@ xlabel('time (s)');
 ylabel('joint angle (rad)');
 set(gca,'fontsize',20);
 legend([p1,p2],'joint angle', 'average position');
+%grid on;
+%grid minor;
 
 figure;
 plot(2);
@@ -91,4 +93,7 @@ xlabel('time (s)');
 ylabel('torque (Nm)');
 set(gca,'fontsize',20);
 hold off;
+%grid on;
+%grid minor;
+
 
