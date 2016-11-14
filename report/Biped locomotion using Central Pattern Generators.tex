@@ -62,7 +62,7 @@
 \usepackage{url,xspace,boxedminipage}   % Accurate display of URLs
 \usepackage{multirow}
 \usepackage{tabulary}
-
+\usepackage{float}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Configurationen:
 
@@ -190,11 +190,7 @@
 
 \section{Introduction}
 \label{sec:introduction}
-
-
-\section{Section 2}
-
-\subsection{Section 2.1}
+\pagebreak
 
 \section{Properties of the Matsuoka oscillator}
 
@@ -203,8 +199,8 @@ On its own, the Matsuoka oscillator produces oscillations about an arbitrary pos
 
 \begin{figure}[htbp]
 \centering     %%% not \center
-\subfigure[Torque output of the oscillator]{\label{fig:b}\includegraphics[scale=0.33]{figures/1-2-torque-for-change-average-position.eps}}
-\subfigure[Joint position and average joint position]{\label{fig:a}\includegraphics[scale=0.33]{figures/1-1-change-average-position.eps}}
+\subfigure[Torque output of the oscillator]{\label{fig:b}\includegraphics[scale=0.30]{figures/1-2-torque-for-change-average-position.eps}}
+\subfigure[Joint position and average joint position]{\label{fig:a}\includegraphics[scale=0.30]{figures/1-1-change-average-position.eps}}
 \caption{Changing the average position of oscillation}
 \label{fig:change-avg-pos}
 \end{figure}
@@ -236,13 +232,22 @@ By varying the time constants of the oscillator the frequency of the torque and 
 
 \begin{figure}[htbp]
 \centering     %%% not \center
-\subfigure[Anti-phase oscillations]{\label{fig:b}\includegraphics[scale=0.33]{figures/4-1-anti-phase.eps}}
-\subfigure[In-phase oscillations]{\label{fig:a}\includegraphics[scale=0.33]{figures/4-2-in-phase.eps}}
+\subfigure[Anti-phase oscillations]{\label{fig:b}\includegraphics[scale=0.35]{figures/4-1-anti-phase.eps}}
+\subfigure[In-phase oscillations]{\label{fig:a}\includegraphics[scale=0.35]{figures/4-2-in-phase.eps}}
 \caption{Anti-phase and in-phase oscillations}
 \label{fig:in-anti-phase}
 \end{figure}
 
+\subsection{Stable attractors}
 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.55]{figures/5-1-stable-attractors.eps}
+\caption{Stable attractors for a broad range of time periods and initial phase difference between the two joints. As shown here, once the mutual coupling between the 2 joints is switched on, the joint oscillations converge to only 2 modes - either in-phase (0 phase difference) or anti-phase ($\pi$ phase difference).}
+\label{fig:stable-attractors}
+\end{figure}
 
 \section{Conclusion}
 
