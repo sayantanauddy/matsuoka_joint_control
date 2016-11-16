@@ -8,7 +8,7 @@ import almath
 def setJointAngle(jointName, jointAngle, timeToReach):
 
     robotIp = "127.0.0.1"
-    robotPort = 12345
+    robotPort = 54321
 
     try:
         motionProxy = ALProxy("ALMotion", robotIp, robotPort)
@@ -17,19 +17,18 @@ def setJointAngle(jointName, jointAngle, timeToReach):
         print "Error was: ",e
         sys.exit(1)
 
-    motionProxy.setStiffnesses("Head", 1.0)
-    names      = "HeadYaw"
+    motionProxy.setStiffnesses("Body", 1.0)
+    names      = jointName
     angleLists = jointAngle*almath.TO_RAD
     timeLists  = timeToReach
     isAbsolute = True
-    motionProxy.angleInterpolation(names, angleLists, timeLists, isAbsolute)
-
-    time.sleep(1.0)
+    fractionMaxSpeed = 1.0
+    motionProxy.setAngles(names, angleLists,fractionMaxSpeed)
 
 def getJointAngle(jointName):
 
     robotIp = "127.0.0.1"
-    robotPort = 12345
+    robotPort = 54321
 
     try:
         motionProxy = ALProxy("ALMotion", robotIp, robotPort)

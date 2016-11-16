@@ -52,8 +52,8 @@ function [psi_t_l,psi_t_r] = matsuoka_torque(t, q_l, q_r)
     step_time = time_now - time_prev;
     time_prev = time_now;
     
-    % At t=10 switch on the mutual coupling between the 2 oscillators
-    if t<10
+    % At t=20s switch on the mutual coupling between the 2 oscillators
+    if t<20
         mu = 0;
         nu = 0;
         sigma = 1.5;

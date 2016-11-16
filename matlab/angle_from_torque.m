@@ -82,90 +82,28 @@ ut_list_l = [];
 global ut_list_r;
 ut_list_r = [];
 
-% Time after which second oscillator should be switched on. This is used to
-% introduce a time lag.
-global second_osc_on_time;
-second_osc_on_time = 0.0;
-
 % Set the time steps
-t = [0:0.01:30];
+t = [0:0.01:60];
 
 % Solve the differential equations of the inertial mechanical system
 % Use custom ODE solver which uses fixed time steps
 % Matlab's in-built ODE solver uses variable time steps and sometimes goes
 % back in time to adjust the time step. This causes problems in the state
 % variables of the matsuoka oscillator.
-
-T = 0.3;
-second_osc_on_time = 0.0;
-
-result = zeros(38,51);
-i=1;
-j=1;
-
-while T <= 4.0
-    while second_osc_on_time <= 5.0
-        
-        t1 = 2.13 + 0.6804*T - sqrt(4.512 + 2.685*T);
-        t2 = 2.5*t1;
-        
-        psi_l_i = 0.0;
-        psi_l_j = 1.0;
-        phi_l_i = 0.0;
-        phi_l_j = 1.0;
-        u_l_i = 1;
-        u_l_j = 1;
-        psi_r_i = 0.0;
-        psi_r_j = 1.0;
-        phi_r_i = 0.0;
-        phi_r_j = 1.0;
-        u_r_i = 1;
-        u_r_j = 1;
-        time_prev = 0;
-        time_now = 0;
-        torque_list_l = [];
-        torque_list_r = [];
-        avg_position_l = [];
-        avg_position_r = [];
-        ut_list_l = [];
-        ut_list_r = [];
-        
-        y=ode1(@inertial_ode,t,[0.0; 0.0; 0.0; 0.0]);
-        
-        % Calculate the phase difference
-        % [http://stackoverflow.com/questions/27545171/identifying-phase-shift-between-signals]
-        y1_h = hilbert(y(3001,1));
-        y3_h = hilbert(y(3001,3));
-        phase_rad = angle(y1_h ./ y3_h);
-        
-        result(i,j) = phase_rad;
-        disp(i);
-        disp(j);
-        disp('----');
-        second_osc_on_time = second_osc_on_time + 0.1;
-        j = j + 1;
-        
-    end
-    T = T + 0.1;
-    i = i + 1;
-    % Reset variables
-    second_osc_on_time = 0.0;
-    j = 1;
-    disp('=====');
-    disp(result);
-end
+y=ode1(@inertial_ode,t,[0.0; 0.0; 0.0; 0.0]);
 
 % Plot the results
 
-figure;
 hold on;
-[xx,yy]=meshgrid(0.3:0.1:4.0,0.0:0.1:5.0);
-surf(xx,yy,transpose(result),'EdgeColor','None');
-view(2);
-xlabel('Time period of joint oscillation (s)');
-ylabel('Difference of activation (s)');
+plot(1);
+p1 = plot(t,y(:,1),'b');
+p2 = plot(t,y(:,3),'r');
+p1(1).LineWidth = 2;
+p2(1).LineWidth = 2;
+xlabel('time (s)');
+ylabel('joint angle (rad)');
 set(gca,'fontsize',20);
-colormap(bone);
+legend([p1,p2],'left joint angle', 'right joint angle');
 %grid on;
 %grid minor;
 
