@@ -37,14 +37,18 @@ function psi_t = matsuoka_torque(t, q)
     time_prev = time_now;
 
     % The time period of position =1.0 from 0 to 10s, =2.0 from 10 to 20s,
-    % = 3.0 from 20s to 30s
-    if t<=10
-        T = 1.0;
-    elseif t<=20
-        T = 2.0;
-    elseif t<=30;
-        T = 3.0;
-    end
+%     % = 3.0 from 20s to 30s
+%     if t<=10
+%         T = 1.0;
+%     elseif t<=20
+%         T = 2.0;
+%     elseif t<=30;
+%         T = 3.0;
+%     end
+    
+    T = 1.0 + (3.0 - 1.0)*t/30.0;
+    u_i = 3.5 - (3.5 - 1.5)*t/30.0;
+    u_j = u_i;
     
     t1 = 2.13 + 0.6804*T - sqrt(4.512 + 2.685*T);
     t2 = 2.5*t1;
