@@ -4,3 +4,5 @@ second joint switched on after 3.5s
 pause for 0.01s
 
 the anti-phase oscillations were really difficult to find.
+
+https://youtu.be/rBa1q0BjjuQ
