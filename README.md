@@ -36,3 +36,30 @@ Give all the informations needed (IPs and Ports) and wait until NAO is listening
 2. Example script: matlab/callPython.m and matlab/nao.py
 
 
+## Matlab and V-REP interfacing
+
+All resources for this section can be found in robot_walking/matlab/matlab-vrep.
+Refer to http://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsMatlab.htm#simxGetObjectGroupData for the API
+
+### Setup
+1. The following files should be present in the current directory in Matlab
+    1. remApi.m
+    2. remoteApiProto.m
+    3. the appropriate remote API library: "remoteApi.dll" (Windows), "remoteApi.dylib" (Mac) or "remoteApi.so" (Linux) 
+    4. simpleTest.m (or any other example program)
+    
+    The remote API library can be found in the V-REP folder. For me it is in V-REP_PRO_EDU_V3_3_2_64_Linux/programming/remoteApiBindings/lib/lib/64Bit. Choose either the 64 or 32 bit library based on your architecture. The other files can be found in V-REP_PRO_EDU_V3_3_2_64_Linux/programming/remoteApiBindings/matlab/matlab. I have modified the file simpleTest.m to suit my purpose and copied the other necessary files to the folder robot_walking/matlab/matlab-vrep. If you use the 32 bit library then copy the 32 bit remoteApi.so file here.
+    
+    
+2. Make sure to have the server side running in V-REP. For this start vrep.sh and import the scene Nao_empty.ttt.
+   The following command is already present in the threaded child script Cuboid5 (can be viewed by opening the 'Scene hierarchy')
+   simExtRemoteApiStart(19999)
+   This command is needed to for V-REP and Matlab to communicate.
+   Start the simulation.
+   
+3. call the function simpleTest() in Matlab. It will display the name and current absolute position [x,y,z] of the Nao in the environment.
+
+4. Any other matlab script can be used to communicate with V-REP. The details of the functions can be found in the API documentation given in the beginning of this section.
+
+   
+
