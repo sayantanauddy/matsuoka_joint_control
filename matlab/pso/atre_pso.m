@@ -26,11 +26,12 @@ function atre_pso(position_bounds, swarm_size, max_iters, C1, C2, d_low, d_high,
 %    None
 %
 % Example: 
+%    position_bounds = [0 1;0 1;0 1;0 1;0 1;0 1];
 %    atre_pso(position_bounds, 30, 10000, 2.0, 2.0, 0.000005, 0.25, true)
 %
 % Other m-files required: none
 % Subfunctions: none
-% MAT-files required: none
+% MAT-files required: hart6sc.m, check_diversity.m
 %
 % See also: 
 
