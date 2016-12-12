@@ -1,8 +1,12 @@
 
 function qi1_pso(position_bounds, swarm_size, max_iters, C1, C2, d_low, d_high, sobol_flag)
 
-%qi1_pso - Function for optimization using ATRE-PSO (a modification of
-%atraction repulsion PSO). Refer to http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4344042
+%qi1_pso - Function for optimization using QI-PSO-1. A slight modification
+%is made in the way new individuals are added to the population. In
+%QI-PSO-1, the new individual is added only when the fitness of this new
+%individual is better than the worst fitness of the population. This
+%sometimes leads to deadlocks. Hence this check is ommitted in this
+%program.Refer to http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4344042
 %
 % Syntax:  qi1_pso(position_bounds, swarm_size, max_iters, C1, C2, d_low, d_high, sobol_flag)
 %
@@ -14,9 +18,8 @@ function qi1_pso(position_bounds, swarm_size, max_iters, C1, C2, d_low, d_high, 
 %    max_iters - Maximum number of iterations to perform
 %    C1 - PSO constant
 %    C2 - PSO constant
-%    d_low - Lower threshold of diversity (used for switching between
-%    attraction, repulsion or in-between mode, see paper for details).
-%    d_high - Upper threshold for diversity
+%    d_low - Lower threshold of diversity
+%    d_high - Higher threshold of diversity
 %    sobol_flag - Flag to determine if initialization is to be done using a
 %    sobol sequence. If false, the initialization is done using a uniform
 %    distribution
@@ -29,16 +32,16 @@ function qi1_pso(position_bounds, swarm_size, max_iters, C1, C2, d_low, d_high, 
 %    position_bounds = [0 1;0 1;0 1;0 1;0 1;0 1];
 %    qi1_pso(position_bounds, 30, 10000, 2.0, 2.0, 0.000005, 0.25, true)
 %
-% Other m-files required: none
+% Other m-files required: hart6sc.m, check_diversity.m,
+% quadratic_interpolation.m
 % Subfunctions: none
-% MAT-files required: hart6sc.m, check_diversity.m
-%
+% MAT-files required: 
 % See also: 
 
 % Author: Sayantan Auddy
 % email: 
 % Website: 
-% Dec 2016; Last revision: 11-Dec-2016
+% Dec 2016; Last revision: 12-Dec-2016
 
 %------------- BEGIN CODE --------------        
 
@@ -95,21 +98,7 @@ function qi1_pso(position_bounds, swarm_size, max_iters, C1, C2, d_low, d_high, 
         
         % Set the inertial weight
         w = 0.9 - (iteration*(0.9 - 0.4)/max_iters);
-        
-        % Check the diversity of the population
-        div = check_diversity(population, swarm_size, individual_length);
-        
-        % Decide between the attraction, in-between or repulsion mode
-        % Mode for basic PSO is attraction
-        mode = 1; % for attraction 
-        if div>d_high
-            mode = 1;
-        elseif (div>=d_low) & (div<=d_high)
-            mode = 2; % for in-between
-        elseif div<d_low
-            mode = 3; % for repulsion
-        end
-        
+               
         for index = 1:swarm_size
             individual = population(index);
             % Unpack the individual
@@ -156,18 +145,7 @@ function qi1_pso(position_bounds, swarm_size, max_iters, C1, C2, d_low, d_high, 
             % Calculate new velocity and position
             for pos_index = 1:individual_length
                 old_vel = v(pos_index);
-                
-                % Update the velocity based on the mode (attraction,
-                % in-between or repulsion)
-                switch mode
-                    case 1
-                        new_vel = w*old_vel + C1*rand1*(p_best_position(pos_index) - x(pos_index)) +  C2*rand2*(g_best_position(pos_index) - x(pos_index));
-                    case 2
-                        new_vel = w*old_vel + C1*rand1*(p_best_position(pos_index) - x(pos_index)) -  C2*rand2*(g_best_position(pos_index) - x(pos_index));
-                    case 3
-                        new_vel = w*old_vel - C1*rand1*(p_best_position(pos_index) - x(pos_index)) -  C2*rand2*(g_best_position(pos_index) - x(pos_index));
-                end
-                
+                new_vel = w*old_vel + C1*rand1*(p_best_position(pos_index) - x(pos_index)) +  C2*rand2*(g_best_position(pos_index) - x(pos_index));
                 v(pos_index) = new_vel;
                 
                 % Calculate new positions
@@ -188,10 +166,22 @@ function qi1_pso(position_bounds, swarm_size, max_iters, C1, C2, d_low, d_high, 
             individual = struct('position', x, 'velocity', v, 'personal_best', p_best_position, 'personal_best_fitness', p_best_fitness);
             population(index) = individual;
             
-        end 
-    end  
-    
-     disp( sprintf( 'Best fitness: %f at location: %s', g_best_fitness, mat2str(g_best_position) ) )
+        end   
+        
+        % Check the diversity of the population
+        div = check_diversity(population, swarm_size, individual_length);
+        
+        % If the diversity is below the threshold, iteratively add new
+        % individuals until the diversity is above the d_high threshold
+        if div<d_low
+            while div<d_high
+                population = quadratic_interpolation(population, swarm_size, individual_length, position_bounds);
+                div = check_diversity(population, swarm_size, individual_length);
+            end
+        end
+        
+    end
+    fprintf( 'Best fitness: %f at location: %s \n', g_best_fitness, mat2str(g_best_position));
 end
 
 %------------- END OF CODE --------------

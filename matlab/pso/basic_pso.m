@@ -21,9 +21,9 @@ function basic_pso(position_bounds, swarm_size, max_iters, C1, C2)
 %    position_bounds = [0 1;0 1;0 1;0 1;0 1;0 1];
 %    basic_pso(position_bounds, 30, 10000, 2.0, 2.0)
 %
-% Other m-files required: none
+% Other m-files required: hart6sc.m
 % Subfunctions: none
-% MAT-files required: hart6sc.m
+% MAT-files required: none
 %
 % See also: 
 
