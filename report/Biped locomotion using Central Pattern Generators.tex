@@ -121,6 +121,8 @@
 
 \newcommand{\erdos}{Erd\H{o}s}
 \newcommand{\renyi}{-R\'{e}nyi}
+\setlength{\parindent}{0pt}
+\newcommand{\forceindent}{\leavevmode{\parindent=2em\indent}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Document:
 \begin{document}
@@ -190,12 +192,23 @@
 
 \section{Introduction}
 \label{sec:introduction}
+\forceindent Walking on two feet is an activity that all of us take for granted. Yet this apparently simple action involves a host of complex mechanisms, both mechanical and neural, which are tied together to produce the efficient bipedal movements of human beings. The ability to move around on two legs has allowed humans to efficiently deal with a wide variety of terrains, be it flat grasslands or lush forests overrun by undergrowth or the concrete jungles which we now inhabit. Even from an evolutionary viewpoint, bipedal locomotion has enabled humans to move about while leaving their hands free to engage in more important tasks such as tool-making. The efficiency and versatility of biped movement is undeniable. It is only natural then, for us to desire our robots to have the same capabilities.\\ 
+\forceindent While a vast majority of mobile robots today have wheels, the limitations of wheeled locomotion are obvious. Wheeled robots require a structured environment to operate in, and although certain types of wheeled robots can handle uneven terrain, their scope is still quite limited. Legged robots on the other hand can operate in much more diverse environments, and theoretically can handle any environment that humans can handle. As robots become more pervasive in society, the need for robots that can function in human environments will continue to grow. Even from a psychological perspective, anthropomorphic robots have the added advantage of being more acceptable to human users.\\
+\forceindent However, the benefits of legged robots comes at a price. The challenges associated with bipedal movement are much more involved than those associated with wheeled locomotion. Bipedal locomotion is inherently unstable, and a considerable amount of effort goes into maintaining balance. The biped robot can be imagined as an inverted pendulum - even a small disturbance is enough to move it from its equilibrium position and unless corrective action is taken, the robot will topple over. In addition to this, bipedal locomotion is a complicated mix of the movements of different limbs in a synchronous fashion. Human walking involves multiple degrees of freedom and is achieved with the combined effort of muscles, bones, ligaments and tendons. Replicating this movement in robots using the conventional servo motors we have at our disposal today, is also a very difficult task.\\
+\forceindent In the literature numerous approaches exist for solving the problem of bipedal locomotion. Perhaps the most popular approach is that of using the  Zero Moment Point (ZMP) introduced by Vukobratovic et al. in 1969 \cite{vukobratovic1969contribution, jurivcic1972mathematical}. In the decades since its inception, ZMP has been a popular choice for researchers around the world dealing with the problem of bipedal robots. ZMP is defined as that point on the ground at which the net moment of the inertial forces and the gravity forces has no component along the horizontal axes \cite{vukobratovic2004zero}. By ensuring that the ZMP always lies within the support polygon of the robot, dynamical stability of the system can be ensured. The approach then is to find a suitable trajectory of the ZMP and then to use inverse kinematics to figure out what the individual joint angle trajectories should be which satisfy the required ZMP trajectory. A very famous example of a ZMP based robot is Honda's ASIMO \cite{sakagami2002intelligent}, which is capable of an astonishing range of movements including stable walking and climbing stairs.\\
+\forceindent However despite the popularity of ZMP based robots, the technique has some considerable limitations. Firstly, the computation of ZMP and the subsequent computation of joint angle trajectories is computationally intensive and has a considerable dependency on the availability of an accurate model of the robot. Secondly, ZMP based robots move in a very conservative manner with bent knees and slow carefully placed steps. In this sense, the movement of robots such as ASIMO are very different from the movement of humans, which is characterized by almost straight knees and fast efficient steps. Animals are adept at utilizing the natural dynamics of their bodies for walking. This leads to a highly energy efficient mode of transport. ZMP based robots, on the other hand, cancel out the natural dynamics of the mechanical system in an effort to maintain control over the system at all times, and this leads to high energy consumption.\\
+\forceindent As with so many other areas of robotics, for walking too, we can draw inspiration from nature and build systems that try to emulate the mechanisms present in animals. This is the approach followed in this paper, where a neural mechanism known as Central Pattern Generators is utilized in an effort to develop a model-free bipedal locomotion approach. The remainder of this paper is organized as follows. In section \ref{sec:Related_Work}, some relevant work is discussed in the area of bipedal locomotion with a focus on biologically inspired approaches. This is followed in section \ref{sec:Biological_Motivation} by a discussion of the biological background of neural mechanisms that enable animals to walk. Section \ref{sec:Matsuoka_Oscillator} introduces Central Pattern Generators and contains an in-depth discussion of the Matsuoka oscillator and its properties. Section \ref{sec:Coupled_Oscillators} elaborates on the use of Matsuoka oscillators and illustrates how multiple oscillators can be linked together to achieve desired movements. This is followed by section \ref{sec:Robot_Joint_Control}, where the process of employing an oscillator to control the joints of a commercially available position controlled robot is described. In section \ref{sec:Walk_Optimization}, different variants of the Particle Swarm Optimization algorithm are used to tune a network of Matsuoka oscillators to find a stable bipedal gait. Section \ref{sec:Discussion} discusses the observed effects and comparative performance of the PSO variants and section \ref{sec:Future_Work} lists the ways in which the system can be extended. Finally section \ref{sec:Conclusion} contains concluding remarks about the work presented in this paper.
+
+
 
 \section{Related Work}
+\label{sec:Related_Work}
 
 \section{Biological Motivation}
+\label{sec:Biological_Motivation}
 
 \section{Matsuoka Oscillator}
+\label{sec:Matsuoka_Oscillator}
 
 \pagebreak
 
@@ -255,16 +268,22 @@ By varying the time constants of the oscillator the frequency of the torque and 
 \end{figure}
 
 \section{Coupled Oscillators}
+\label{sec:Coupled_Oscillators}
 
 \section{Robot Joint Control}
+\label{sec:Robot_Joint_Control}
 
 \section{Walk Optimization}
+\label{sec:Walk_Optimization}
 
 \section{Discussion}
+\label{sec:Discussion}
 
 \section{Future Work}
+\label{sec:Future_Work}
 
 \section{Conclusion}
+\label{sec:Conclusion}
 
 \cite{ronsse2009computational, williamson1998neural, matsuoka1987mechanisms, matsuoka1985sustained,Ishiguro2003}
 
