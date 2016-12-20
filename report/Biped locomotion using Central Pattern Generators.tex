@@ -203,12 +203,28 @@
 
 \section{Related Work}
 \label{sec:Related_Work}
-\forceindent The study of bipedal robots has gained much momentum over recent years. However it was the pioneering work of Vukobratovic \cite{vukobratovic1969contribution} \cite{jurivcic1972mathematical} and Kato \cite{kato1973development} that kick started interest in the field of humanoid robotics. The first humanoid robot WABOT 1 was developed in 1973 by Kato and his team at the Waseda University in Japan. At the same time Vukobratovic and his team were working on problems associated with functional rehabilitation. They developed the first robotic exoskeletons at the Mihajlo Pupin Institute in erstwhile Yugoslavia.
+\forceindent The study of bipedal robots has gained much momentum over recent years. However it was the pioneering work of Vukobratovic \cite{vukobratovic1969contribution} \cite{jurivcic1972mathematical} and Kato \cite{kato1973development} that kick started interest in the field of humanoid robotics. The first humanoid robot WABOT 1 was developed in 1973 by Kato and his team at the Waseda University in Japan. At the same time Vukobratovic and his team were working on problems associated with functional rehabilitation. They developed the first robotic exoskeletons at the Mihajlo Pupin Institute in erstwhile Yugoslavia. The most important outcome from this work was the concept of ZMP that has been used widely since. Later years saw the emergence of a number of legged robots from the Ohio State University, the Carnegie Mellon University and the Leg Laboratory at the Massachusetts Institute of Technology in the United States \cite{siciliano2008springer}. Nowadays, the most notable humanoids include ASIMO from honda \cite{sakagami2002intelligent}, QRIO from Sony and the HRP robot from Kawada industries. Realtively cheap commercial humanoids such as the Nao robot from Aldebaran Robotics and the Darwin from Robotis are also available.\\
+\forceindent The wide availability of appropraite hardware has acted as a catalyst to research on the mechanisms of walking. Research has yeilded a number of different ways in which humanoid robots can be made to walk in a stable manner. These may be loosely grouped into the following categories:\\
+\begin{enumerate}
+\item \textbf{ZMP and Linear Inverted Pendulum based approaches}: This is arguably the most popular approach adopted for humanoid locomotion. In \cite{kajita2003biped}, Kajita et al. present a method to generate ZMP and Center of Mass (CoM) trajectories of the robot using a technique known as preview control, where the reference ZMP is known for a few seconds into the future. In \cite{kajita2010biped} Kajita et al., achieve stabiliyation using the Linear Inverted Pendulum (LIP) model on a 42-degree-of-freedom (DoF) adult sized humanoid robot. In \cite{kajita20013d}, the authors present a simplified model (3D-LIP) which can be used to accurately model the dynamics of a high DoF robot.
+\item \textbf{Passive Bipedal Walking:} Despite the popularity of ZMP based techniques, the gait of even highly sophisticated humanoid robots aśuch as ASIMO is very different from the gait of humans, which is characterized by ease of movement and energy efficiency. McGeer's work \cite{mcgeer1990passive} has shown that highly efficient human like gait can be achieved even by an unactuated humanoid walking down a ramp, when it can efficiently utilize the dynamics of its mechanical structure. Further related research is presented in \cite{kuo1999stabilization} and \cite{collins2005efficient}.
+\item \textbf{Push Recovery and Capture Steps: } In \cite{missura2013omnidirectional, missura2014online, missura2015gradient} the authors argue that pure ZMP based methods rely on sophisticated hardware and are not suitable in situations where the robot may be subject to strong disturbances. The authors have presented a hierarchical gait control architecture where balance control is separated from motion generation. This architecture relies on the LIP model and is able to resist strong disturbances using a combination of different strategies including ZMP. In \cite{stephens2007humanoid}, simple models for humanoids are investigated with respect to push recovery and different recovery strategies are explored. In \cite{rebula2007learning} a strategy for learning capture points for push recovery is presented.
+\item \textbf{Reflexive and Sensorimotor control: } In \cite{geng2005fast} a neural ntwork controlled biped walker is presented. A reflexive hierarchical controller controls biped walking without any kind of trajectory control. Reinforcement learning is used to tune the parameters of the controller. In \cite{paul2005sensorimotor} sensorimotor neural networks (one for each leg) control the motion of the biped. The network is optimized using a genetic algorithm. Rythmic motion is generated without the use of recurrent connections.
+\item \textbf{Evolution of Central Pattern Generators: } Central Pattern Generators are biological neural networks which produce rythmic output on their own without the need of any sensory feedback. The output of the individual networks control the movement of the individual limbs and can be modulated using sensory feedback to produce different kinds of motion. Typically the parameters of the CPG are tuned using some kind of evolutionary algorithm. Various mathematical models, known as oscillators, are available which encapsulate the behavior of the CPG in the form of coupled nonlinear differential equations. The most used oscillators are the Van der Pol oscillator \cite{kanamaru2007van}, the Hopf oscillator \cite{Righetti2006} and the Matsuoka oscillator \cite{Matsuoka1985,Matsuoka1987}. In \cite{Righetti2006} and \cite{Kieboom2009}, Hopf oscillators have been used for pattern generation, along with some feedback mechanisms for stabilizations. Taga \cite{Taga1991} produced the seminal work in which Matsuoka oscillators were used for gait generation of a two dimensional planar biped robot. Ishiguro et al. \cite{Ishiguro2003} present an approach in which a CPG circuit is modulated using simulated neuromodulators to achieve stable bipedal locomotion. In \cite{reil2002evolution} a recurrent neural network is used as a pattern generator and an evolutionary algorithm is used for evolving the network parameters. The motion produced, however, is not suitable for rough terrain and may be used as a starting point for stable walking. In \cite{Ijspeert2008} Ijspeert presents a comprehensive review of the use of CPGs for locomotion control.
+\end{enumerate}
 
 \section{Biological Motivation}
 \label{sec:Biological_Motivation}
 
+Book and CPG review paper.
+
+
+
+
+
+
 \section{Matsuoka Oscillator}
+Write about the advantages of the Matsuoka oscillator, disadvantages of other oscillators.
 \label{sec:Matsuoka_Oscillator}
 
 \pagebreak
@@ -296,7 +312,7 @@ By varying the time constants of the oscillator the frequency of the torque and 
 % ``bib.bib''
 %
 \bibliographystyle{plain}
-\bibliography{SA,primary}
+\bibliography{primary,secondary}
 \end{document}
 
 
