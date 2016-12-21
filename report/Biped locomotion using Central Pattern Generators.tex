@@ -63,6 +63,8 @@
 \usepackage{multirow}
 \usepackage{tabulary}
 \usepackage{float}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Configurationen:
 
@@ -215,12 +217,21 @@
 
 \section{Biological Motivation}
 \label{sec:Biological_Motivation}
-
-Book and CPG review paper.
-
-
+\forceindent The primary objective of research in bipedal robots is to build systems which can walk efficiently on different terrains. In this respect, human levels of performance maybe considered as the benchmark, and thus it is worthwhile to investigate the biological mechanisms that allow humans to walk with such graceful ease and nonchalance. In both higher level vertebrates such as humans as well as in invertebrates, neural circuits known as Central Pattern Generators are responsible for producing the rythmic movements which are responsible for locomotion \cite{Ijspeert2008}. These CPGs can produce rythmic patterns of neural activity without the need of rythmic or sensory inputs, and they are the basis of fundamental activities such as chewing, breathing and locomotion. Several studies have proven the existance of CPGs in animals and their responsibility for the movements of the animals \cite{cohen1980neuronal,grillner1985neural,stein1999neurons}. Although sensory feedback is not required to generate the rythmic patterns by CPGs, it plays an important role in modulating the rythmic patterns \cite{Ijspeert2008}. Vertebrate locomotor systems are organized such that the CPGs are responsible for producing basic rythmic patterns and the higher brain centers modulate these patterns based on external sensory inputs \cite{Ijspeert2008}. Such an organization has important consequences, even from a robotics perspective, since it drastically reduces the dimensionality of higher level control signals. The higher centers do not need to specify individual muscle (or joint) activity and instead only need to modulate the CPG activity using a small set of parameters.\\
+\forceindent A general framework for the nervous control of motor systems is illustrated in figure \ref{fig:neural_comp}. The first element in this framework is the Cenral Pattern Generator, located in the spinal cord \cite{neurobiology1994shepherd}. This is responsible for neural mechanisms for generating coordinated rythmic outputs for the motoneurons. The CPG in turn is controlled and modulated by the higher motor centers, which form the hierarchy of motor control. There also exist feedback circuits which relay information from the muscles (proprioceptive feedback) and from the environment through other sensory pathways \cite{neurobiology1994shepherd}. The feedback information is transmitted from lower to higher centers. The proprioceptive feedback informs the higher center about any deviations that exist between the commanded signal and the output \cite{neurobiology1994shepherd}.
 
 
+\begin{figure}[htbp]
+\centering     %%% not \center
+\subfigure[Neural components of motor systems. Feedback information flows from the lower centers to the higher centers. Sensory input to CPG is only used for modulation. The CPGs can produce rhythmic output in the absence of sensory input as well \cite{neurobiology1994shepherd}]{\label{fig:neural_comp}\includegraphics[scale=0.33]{figures/neural_comp.png}}
+\subfigure[Half-center model. D denotes driver neurons which supply a constant input, E and F are the extensor and flexor motoneurons respectively. Filled profiles indicate inhibitory neurons, open profiles denote excitatory neurons \cite{neurobiology1994shepherd}]{\label{fig:half_center}\includegraphics[scale=0.27]{figures/half_center_model.png}}
+\caption{Neural components of motor systems and a half-center CPG model \cite{neurobiology1994shepherd}}
+\end{figure}
+
+
+\forceindent One of the main functions of motor systems is the genration of oscillatory patterns of muscle activity. This property rests with neural circuits which make up the Central Pattern Generator. The CPG circuitry may be either local or distributed, and are generally belong to one of three major categories: the half-center model, the closed-loop model and the pacemaker model \cite{neurobiology1994shepherd}. Only the half-center model is discussed here as it is relevant to the material in the subsequent sections. The interested reader is referred to \cite{neurobiology1994shepherd} for details of the other models.\\
+\forceindent The half-center model was first proposed by Brown \cite{brown1914nature} to explain the alternating activation of the flexor and extensor muscles of a decerebrated cat's limbs during walking on a treadmill. Each pool of motor neurons for flexor (F) or extensor (E) is activated by a corresponding half-center of interneurons. Another set of neurons (D) provides a constant excitatory drive to the half-centers.Each half-center has inhibitory connections to the other half-center, and this ensures that when one pool is activated, the other one is deactivated. According to Brown, as the first half-center was activated, a process of fatigue would build up in the inhibitory connection between the half-centers which would ultimately lead to a switching of activity between the half-centers. The process of fatigue can be modelled by any process that induces self-inhibition of the active half-centers \cite{neurobiology1994shepherd}. The half-center model is illustrated in figure \ref{fig:half_center}.\\
+\forceindent The inherent properties of CPGs make them a suitable candidate for the locomotion control of legged robots, as opposed to controllers based on pre-recorded trajectories, finite-state machines or ZMP \cite{Ijspeert2008}. First of all, CPG based models display stable limit cycle behavior, which means that although the generated patterns may be modified under the effect of a disturbance, as soon as the disturbance is removed, the CPG goes back to its normal behavior. This property maybe beneficial in situations where robots need to tackle uneven terrain. Secondly, CPG based controllers have very few parameters and hence higher level controllers need not deal with low level motor commands but only need to produce high-level control signals to modulate the pattern that the CPG produces on its own. Thirdly, CPGs can handle sensory feedback easily, since the feedback signals can be convineantly added as coupling terms in the differential equations. This also leads to the property of entrainment, where the CPG tunes itself to the dynamics of the mechanical system and can effectively utilize the mechanics of the robot for locomotion \cite{Ijspeert2008}. This property will also be touched upon later on, when the mathematical model of the CPG, as used on the robot, is discussed.
 
 
 \section{Matsuoka Oscillator}
