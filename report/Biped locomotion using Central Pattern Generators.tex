@@ -246,13 +246,23 @@
 \label{sec:Matsuoka_Oscillator}
 \forceindent The Matsuoka oscillator is a mathematical model representing a general class of neural rhythm generators called mutual inhibition networks \cite{Matsuoka1987}. In this oscillator a set of neurons inhibit each others activities. For the individual neurons, a continuous-time continuous-variable neuron model is adopted \cite{Matsuoka1987}. The autonomous dynamics of the model are based on a piece-wise linear set of differential equations which model the dynamics of neural discharge rates. The oscillator consists of a pair of mutually inhibitory neurons whose rates of discharge are denoted by $\psi_i$ and $\psi_j$ respectively. The firing rates obey the following equations \cite{Ronsse2009}: 
 \begin{subequations} 
+\label{eq:matsuoka_basic}
 \begin{align}
  t_1 \dot{\psi_i}=-\psi_i - \beta \phi_i - \eta [\psi_j]^+ + u_i\\
  t_1 \dot{\psi_j}=-\psi_j - \beta \phi_j - \eta [\psi_i]^+ + u_j
  \end{align}
 \end{subequations}
-where $t_1$ is the time constant for the rate of discharge, $\beta$ is the self-inhibition constant and $\eta$ is the constant of mutual inhibition. $u_i$ and $u_i$ denote the constant (tonic) input signals that drive the oscillator. $[\textbf{\textbullet}]^+=max(0,\textbf{\textbullet})$ implies that only the positive part of the discharge rates is considered for mutual inhibition. Two other state variables, $\phi_i$ and $\phi_j$ control the self-inhibition, and obey the following equations \cite{Ronsse2009}: 
+where $t_1$ is the time constant for the rate of discharge, $\beta$ is the self-inhibition constant and $\eta$ is the constant of mutual inhibition. $u_i$ and $u_j$ denote the constant (tonic) input signals that drive the oscillator. $[\textbf{\textbullet}]^+=max(0,\textbf{\textbullet})$ implies that only the positive part of the discharge rates is considered for mutual inhibition. Equation  \ref{eq:matsuoka_basic} can be further extended by including terms representing the proprioceptive feedback, which will enable the system to monitor and rectify errors between the commanded and executed trajectories. A way of doing this was suggested by \cite{Williamson1998}, by including the sensory feedback into the firing rate equations (equation \ref{eq:matsuoka_basic}). On doing so these equations are modified into:
 \begin{subequations} 
+\label{eq:matsuoka_extended}
+\begin{align}
+ t_1 \dot{\psi_i}=-\psi_i - \beta \phi_i - \eta [\psi_j]^+ - \sigma [\theta - \theta^{*}] + u_i\\
+ t_1 \dot{\psi_j}=-\psi_j - \beta \phi_j - \eta [\psi_i]^+ - \sigma [-(\theta - \theta^{*})] + u_j
+ \end{align}
+\end{subequations}
+Here, $\sigma$ is the strength of the sensory feedback, $\theta$ denotes the proprioceptive feedback and $\theta^{*}$ denotes the desired reference output angle (the mean position about which oscillations should occur). It should be kept in mind that this sensory feedback is not required for producing oscillations but only to make sure that the oscillations occur about a reference position. Two other state variables, $\phi_i$ and $\phi_j$ control the self-inhibition, and obey the following equations \cite{Ronsse2009}: 
+\begin{subequations} 
+\label{eq:matsuoka_phi}
 \begin{align}
  t_2 \dot{\phi_i}=-\phi_i + [\psi_i]^+\\
  t_2 \dot{\phi_j}=-\phi_j + [\psi_j]^+
@@ -260,51 +270,59 @@ where $t_1$ is the time constant for the rate of discharge, $\beta$ is the self-
 \end{subequations}
 Here, $t_2$ is the time constant of adaptation or fatigue. The time constants $t_1$ and $t_2$ play an important role in the generation of oscillations. The discharge of a neuron with a constant input $u$ will first rise to a maximum value in a time governed by $t_1$ and then gradually decrease to a lower value in a time governed by $t_2$. Robust oscillations emerge due to a balance between self-inhibition and mutual-inhibition. The discharge rates $\psi_i$ and $\psi_j$ are assumed to be proportional to the torque generated in the positive and negative directions respectively. Hence the net torque is given by: 
 \begin{equation}
+\label{eq:matsuoka_net_torque}
 \psi_T=h_{\psi}([\psi_i]^+ - [\psi_j]^+)
 \end{equation}
 where $h_{\psi}$ is the gain factor. The resultant torque can be converted into the desired joint velocity $\dot{\theta}$ and angular position $\theta$ by solving the following differential equation of a simple inertial mechanical system \cite{Ronsse2009}:
 \begin{equation}
 I\ddot{\theta} + \gamma \dot{\theta} - \psi_T = 0
 \end{equation}
-Here, $I$ is the moment of inertia, $\gamma$ is the damping constant.
+Here, $I$ is the moment of inertia and $\gamma$ is the damping constant. A pictorial representation of a Matsuoka oscillator driving a single joint (with proprioceptive feedback) is shown in figure \ref{fig:matsuoka_diagram}.
 
-Include a diagram of a Matsuoka oscillator and waveform.
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.25]{figures/matsuoka_diagram.png}
+\caption{Matsuoka oscillator driving two antagonistic muscles, producing a 1-DoF movement at the elbow. The difference of the torques produced by the two neurons is the net torque that drives the joint. Proprioceptive feedback is denoted by the gray line. Lines with empty circles at the end denote inhibitory connections. The symbols have the same meaning as in equations \ref{eq:matsuoka_basic}, \ref{eq:matsuoka_extended} and \ref{eq:matsuoka_phi} \cite{Ronsse2009}.}
+\label{fig:matsuoka_diagram}
+\end{figure}
 
-\subsection{Using proprioceptive feedback to control the mean position}
-On its own, the Matsuoka oscillator produces oscillations about an arbitrary position, and the system itself is dynamically unstable. However, with the introduction of a feedback term, the mean position of oscillations can be controlled \cite{ronsse2009computational}. This is shown in figure \ref{fig:change-avg-pos}.
+\forceindent Since the basic equations of the Matsuoka oscillator are now in place, it is worthwhile to investigate how the parameters of the oscillator affect the output pattern. This will lead to a better understanding of how to achieve desired movements of the robot by changing oscillator parameters. According to equations \ref{eq:matsuoka_basic}-\ref{eq:matsuoka_net_torque}, the parameters of the oscillator are $t_1$ (time constant for the rate of discharge), $t_2$ (time constant of fatigue), $\beta$ (self-inhibition constant), $\eta$ (mutual-inhibition constant), $u_i$, $u_j$ (tonic inputs, it is assumed that $u_i=u_j$) , $\sigma$ (strength of sensory feedback),  $\theta^*$ (desired reference angular position) and $h_{\psi}$ (torque gain). $\psi_i$, $\psi_j$, $\phi_i$, $\phi_j$ are the state variables, whose behavior is dependent on the oscillator parameters.\\ 
+\forceindent First the effect of changing the desired reference position on the angular trajectory is demonstrated. On its own, the Matsuoka oscillator produces oscillations about an arbitrary position, and the system itself is dynamically unstable. However, with the introduction of a feedback term, the mean position of oscillations can be controlled \cite{Ronsse2009}. This is shown in figure \ref{fig:change-avg-pos}. Here for the first 10 seconds $\theta^*=0$ radians, from 10-20s, $\theta^*=1$ radian and from 20-30s $\theta^*=-1$ radian. As illustrated by the joint position graph, the mean oscillation position changes and the transition is smooth without any abrupt changes. The values of the other parameters are set as $t_1=0.25$, $t_2= 2.5 \times t_1$ as per \cite{Ronsse2009}, $\beta=2.5$,  $\eta=2.5$, $u_i=u_j=1$, $\sigma=1.5$ and $h_{\psi}=5.0$. This kind of situation maybe encountered when the robot initially moves on a flat surface and then steps upon an inclined surface. At this point the robot would have to move its center of mass forward by bending a little and the mean oscillation position of some joints would change.
 
 \begin{figure}[htbp]
 \centering     %%% not \center
-\subfigure[Torque output of the oscillator]{\label{fig:b}\includegraphics[scale=0.30]{figures/1-2-torque-for-change-average-position.eps}}
-\subfigure[Joint position and average joint position]{\label{fig:a}\includegraphics[scale=0.30]{figures/1-1-change-average-position.eps}}
+\subfigure[Torque output of the oscillator]{\includegraphics[scale=0.21]{figures/1-2-torque-for-change-average-position.eps}}
+\subfigure[Joint position and average joint position]{\includegraphics[scale=0.21]{figures/1-1-change-average-position.eps}}
 \caption{Changing the average position of oscillation}
 \label{fig:change-avg-pos}
 \end{figure}
 
-\subsection{Controlling the amplitude of the joint angle oscillations}
-The tonic input to the oscillator is linearly related to the amplitude of the torque output and also approximately linearly to the amplitude of the position oscillations. Here the tonic input was linearly increased from 1.0 to 4.0 over 30 seconds, and as shown in figure \ref{fig:change-amp}, the amplitude of both the oscillations increases in a linear manner.
+\forceindent Next, the effect of changing the tonic input is demonstrated. 
+The tonic input to the oscillator is linearly related to the amplitude of the torque output and also approximately linearly to the amplitude of the position oscillations. In this example, the tonic input was linearly increased from 1.0 to 4.0 over 30 seconds, and as shown in figure \ref{fig:change-amp}, the amplitude of both the oscillations increases in a linear manner. This is possible in a situation where the robot needs to change the length of its stride to move over an obstacle or to step onto a stair. As is visible from the graphs, the transitions from one amplitude to the next are smooth. The values of the parameters other than the tonic input were $t_1=0.25$, $t_2= 2.5 \times t_1$ as per \cite{Ronsse2009}, $\beta=2.5$,  $\eta=2.5$, $\sigma=1.5$, $theta^*=0$ and $h_{\psi}=5.0$.
 
 \begin{figure}[htbp]
 \centering     %%% not \center
-\subfigure[Torque output of the oscillator]{\label{fig:b}\includegraphics[scale=0.30]{figures/2-1-change-in-torque.eps}}
-\subfigure[Joint position and average joint position]{\label{fig:a}\includegraphics[scale=0.30]{figures/2-2-change-in-angle.eps}}
-\subfigure[Tonic input to the oscillator]{\label{fig:b}\includegraphics[scale=0.30]{figures/2-3-change-in-ut.eps}}
+\subfigure[Torque output of the oscillator]{\includegraphics[scale=0.21]{figures/2-1-change-in-torque.eps}}
+\subfigure[Joint position and average joint position]{\includegraphics[scale=0.21]{figures/2-2-change-in-angle.eps}}
 \caption{Changing the amplitude of oscillations}
 \label{fig:change-amp}
 \end{figure}
 
-\subsection{Controlling the frequency of the joint angle oscillations}
-By varying the time constants of the oscillator the frequency of the torque and joint angle oscillations can be varied. In figure \ref{fig:change-freq}, the time constant $t_1$ was set to 0.3 for the first 20 seconds, 0.6 for the next 20 seconds and to 0.9 for the last 20 seconds. The constant $t_2$ was set as $t_2 = 2.5 \times t_1$ as in \cite{ronsse2009computational}. As expected the frequency of both the torque and the joint angle oscillations decreases. However for the joint angles, the amplitude also increases as the frequency decreases. Throughout the 60 seconds, the tonic input $u_t$ was set to 1. Note that for both the 2 changes (at $t=20s$ and $t=40s$), the transitions were smooth.
+\forceindent Apart from the mean position and amplitude, another key property of a waveform is its frequency. By varying the time constants of the oscillator the frequency of the torque and joint angle oscillations can be varied. In figure \ref{fig:change-freq}, the time constant $t_1$ was set to 0.3 for the first 20 seconds, 0.6 for the next 20 seconds and to 0.9 for the last 20 seconds. The constant $t_2$ was set as $t_2 = 2.5 \times t_1$ as in \cite{Ronsse2009}. As expected the frequency of both the torque and the joint angle oscillations decreases. However for the joint angles, the amplitude also increases as the frequency decreases. This effect maybe countered by gradually decreasing the tonic input as the frequency decreases in order to keep the amplitude constant. This kind of a situation can occur when the robot needs to change its speed of walking. The values of the parameters other than the time constants were $\beta=2.5$,  $\eta=2.5$, $\sigma=1.5$, $u_i=u_j=1$, $theta^*=0$ and $h_{\psi}=5.0$. Note that for both the  transitions (at $t=20s$ and $t=40s$), the changes were smooth. 
 
 \begin{figure}[htbp]
 \centering     %%% not \center
-\subfigure[Torque output of the oscillator]{\label{fig:b}\includegraphics[scale=0.33]{figures/3-1-changing-freq-torque.eps}}
-\subfigure[Joint position and average joint position]{\label{fig:a}\includegraphics[scale=0.33]{figures/3-2-changing-freq-pos.eps}}
+\subfigure[Torque output of the oscillator]{\includegraphics[scale=0.21]{figures/3-1-changing-freq-torque.eps}}
+\subfigure[Joint position and average joint position]{\includegraphics[scale=0.21]{figures/3-2-changing-freq-pos.eps}}
 \caption{Changing the frequency of oscillation}
 \label{fig:change-freq}
 \end{figure}
 
-\subsection{Anti-phase and in-phase oscillations}
+
+\forceindent So far, the behavior of only a single oscillator driving a solitary joint has been described. In a robot, however, multiple joints must interact with one another in a way that leads to a stable gait. In order to do so, the oscillators driving the individual joints must have a way of communicating with each other.\\
+
+Write about different kinds of coupling
+
 
 \begin{figure}[htbp]
 \centering     %%% not \center

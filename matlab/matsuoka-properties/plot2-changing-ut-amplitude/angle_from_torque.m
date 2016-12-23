@@ -74,7 +74,7 @@ p1(1).LineWidth = 2;
 p2(1).LineWidth = 2;
 xlabel('time (s)');
 ylabel('joint angle (rad)');
-set(gca,'fontsize',20);
+set(gca,'fontsize',30);
 legend([p1,p2],'joint angle', 'average position');
 
 figure;
@@ -85,7 +85,7 @@ p3(1).LineWidth = 2;
 legend([p3],'torque');
 xlabel('time (s)');
 ylabel('torque (Nm)');
-set(gca,'fontsize',20);
+set(gca,'fontsize',30);
 hold off;
 
 figure;
@@ -96,5 +96,5 @@ p4(1).LineWidth = 2;
 legend([p4],'tonic input');
 xlabel('time (s)');
 ylabel('Arbitrary unit');
-set(gca,'fontsize',20);
+set(gca,'fontsize',30);
 hold off;
