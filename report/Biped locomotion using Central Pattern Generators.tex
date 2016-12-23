@@ -9,6 +9,7 @@
 \newcommand{\tremail}{4auddy@informatik.uni-hamburg.de}
 \newcommand{\trarbeitsbereich}{Knowledge Technology, WTM}
 \newcommand{\trdate}{03.11.2016}
+\newcommand{\suchthat}{\mid}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Languages:
@@ -319,9 +320,39 @@ The tonic input to the oscillator is linearly related to the amplitude of the to
 \end{figure}
 
 
-\forceindent So far, the behavior of only a single oscillator driving a solitary joint has been described. In a robot, however, multiple joints must interact with one another in a way that leads to a stable gait. In order to do so, the oscillators driving the individual joints must have a way of communicating with each other.\\
-
-Write about different kinds of coupling
+\forceindent So far, the behavior of only a single oscillator driving a solitary joint has been described. In a robot, however, multiple joints must interact with one another in a way that leads to a stable gait. In order to do so, the oscillators driving the individual joints must have a way of communicating with each other. This communication is determined by a coupling function which dictates how different oscillators can synchronize their frequencies or lock their phase \cite{Ronsse2009}. To demonstrate the effects of coupling, two oscillators driving two different joints will be considered. For convenience, the two joints may be called the left joint (l subscript) and the right joint (r subscript). The state variable of the left joint are $\psi_{l,i}$, $\psi_{l,j}$, $\phi_{l,i}$, $\phi_{l,j}$, $\theta_l$ and $\dot{\theta_l}$ and the tonic inputs are $u_{l,i}$ and $u_{l,j}$. Similarly the variables for the right joint are $\psi_{r,i}$, $\psi_{r,j}$, $\phi_{r,i}$, $\phi_{r,j}$, $\theta_r$ and $\dot{\theta_r}$ and the tonic inputs are $u_{r,i}$ and $u_{r,j}$. The time constants for both the joints are assumed to be $t_1$ and $t_2$. With this configuration, the coupling can be of three possible types:
+\begin{enumerate}
+\item \textbf{Coupled at the input level}: If $u_{r,i}=u_{l,i}$ and $u_{r,j}=u_{l,j}$, then the coupling is done at the input level. However this kind of coupling does not allow the oscillators to converge to a definite phase and they continue behaving as two independent units \cite{Ronsse2009}.
+\item \textbf{Coupled at the level of internal state variables}: Here the coupling is done by having a term for $\psi_{r,i}$ in the equation of $\psi_{l,i}$ and similarly a term for $\psi_{r,j}$ in the equation of $\psi_{l,j}$ (same for the equations of the right joint). Matsuoka had suggested this kind of coupling for a network of oscillators \cite{Matsuoka1987}. The disadvantage of this type of coupling is that in a network of several oscillators, all of them will either converge to in-phase or anti-phase oscillations, and a co-existence of in- and anti-phase relation is not possible \cite{Ronsse2009}. In bipedal locomotion, the left hip joint moves in opposite phase to the right hip joint, but joints within the same leg move in-phase. Hence the coupling described here is not suitable for bipedal locomotion.
+\item \textbf{Coupling at the level of output variables}: If the coupling is done at the level of the output variables $\theta_l$ and $\theta_r$, bot in-phase and anti-phase relationships can be achieved within a network of oscillators \cite{Ronsse2009}. This is the coupling configuration that has been used in this paper. The equations of the oscillator, in this case become (only the equations of the right joint are given below):\\
+\begin{subequations}
+\label{eq:matsuoka_coupled}
+%
+\begin{align}
+\label{eq:matsuoka_coupled1}
+\begin{split}
+t_1 \dot{\psi_{r,i}}={}& -\psi_{r,i} - \beta \phi_{r,i} - \eta [\psi_{r,j}]^+ - \sigma [\theta_r - \theta^{*}_r]\\ 
+& - \mu [\theta_l - \theta_l^*]^+ - \nu [-\theta_l + \theta_l^*]^+ + u_{r,i} 
+\end{split}
+\\
+%
+\label{eq:matsuoka_coupled2}
+t_2 \dot{\phi_{r,i}} = {}& -\phi_{r,i} + [\psi_{r,i}]^+
+\\
+%
+\label{eq:matsuoka_coupled3}
+\begin{split}
+t_1 \dot{\psi_{r,j}}={}& -\psi_{r,j} - \beta \phi_{r,j} - \eta [\psi_{r,i}]^+ - \sigma [\theta_r - \theta^{*}_r]\\
+& - \mu [\theta_l - \theta_l^*]^+ - \nu [-\theta_l + \theta_l^*]^+ + u_{r,j}
+\end{split}
+\\
+%
+\label{eq:matsuoka_coupled4}
+t_2 \dot{\phi_{r,j}} ={}& -\phi_{r,j} + [\psi_{r,j}]^+
+\end{align}
+%
+\end{subequations}
+\end{enumerate}
 
 
 \begin{figure}[htbp]
