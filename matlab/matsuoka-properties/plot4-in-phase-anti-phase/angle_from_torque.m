@@ -83,7 +83,7 @@ global ut_list_r;
 ut_list_r = [];
 
 % Set the time steps
-t = [0:0.01:60];
+t = [0:0.01:30];
 
 % Solve the differential equations of the inertial mechanical system
 % Use custom ODE solver which uses fixed time steps
@@ -102,7 +102,7 @@ p1(1).LineWidth = 2;
 p2(1).LineWidth = 2;
 xlabel('time (s)');
 ylabel('joint angle (rad)');
-set(gca,'fontsize',20);
+set(gca,'fontsize',30);
 legend([p1,p2],'left joint angle', 'right joint angle');
 %grid on;
 %grid minor;

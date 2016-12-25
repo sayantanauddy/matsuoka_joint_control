@@ -276,6 +276,7 @@ Here, $t_2$ is the time constant of adaptation or fatigue. The time constants $t
 \end{equation}
 where $h_{\psi}$ is the gain factor. The resultant torque can be converted into the desired joint velocity $\dot{\theta}$ and angular position $\theta$ by solving the following differential equation of a simple inertial mechanical system \cite{Ronsse2009}:
 \begin{equation}
+\label{eq:inertial_system}
 I\ddot{\theta} + \gamma \dot{\theta} - \psi_T = 0
 \end{equation}
 Here, $I$ is the moment of inertia and $\gamma$ is the damping constant. A pictorial representation of a Matsuoka oscillator driving a single joint (with proprioceptive feedback) is shown in figure \ref{fig:matsuoka_diagram}.
@@ -311,7 +312,7 @@ The tonic input to the oscillator is linearly related to the amplitude of the to
 
 \forceindent Apart from the mean position and amplitude, another key property of a waveform is its frequency. By varying the time constants of the oscillator the frequency of the torque and joint angle oscillations can be varied. In figure \ref{fig:change-freq}, the time constant $t_1$ was set to 0.3 for the first 20 seconds, 0.6 for the next 20 seconds and to 0.9 for the last 20 seconds. The constant $t_2$ was set as $t_2 = 2.5 \times t_1$ as in \cite{Ronsse2009}. As expected the frequency of both the torque and the joint angle oscillations decreases. However for the joint angles, the amplitude also increases as the frequency decreases. This effect maybe countered by gradually decreasing the tonic input as the frequency decreases in order to keep the amplitude constant. This kind of a situation can occur when the robot needs to change its speed of walking. The values of the parameters other than the time constants were $\beta=2.5$,  $\eta=2.5$, $\sigma=1.5$, $u_i=u_j=1$, $theta^*=0$ and $h_{\psi}=5.0$. Note that for both the  transitions (at $t=20s$ and $t=40s$), the changes were smooth. 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering     %%% not \center
 \subfigure[Torque output of the oscillator]{\includegraphics[scale=0.21]{figures/3-1-changing-freq-torque.eps}}
 \subfigure[Joint position and average joint position]{\includegraphics[scale=0.21]{figures/3-2-changing-freq-pos.eps}}
@@ -324,7 +325,7 @@ The tonic input to the oscillator is linearly related to the amplitude of the to
 \begin{enumerate}
 \item \textbf{Coupled at the input level}: If $u_{r,i}=u_{l,i}$ and $u_{r,j}=u_{l,j}$, then the coupling is done at the input level. However this kind of coupling does not allow the oscillators to converge to a definite phase and they continue behaving as two independent units \cite{Ronsse2009}.
 \item \textbf{Coupled at the level of internal state variables}: Here the coupling is done by having a term for $\psi_{r,i}$ in the equation of $\psi_{l,i}$ and similarly a term for $\psi_{r,j}$ in the equation of $\psi_{l,j}$ (same for the equations of the right joint). Matsuoka had suggested this kind of coupling for a network of oscillators \cite{Matsuoka1987}. The disadvantage of this type of coupling is that in a network of several oscillators, all of them will either converge to in-phase or anti-phase oscillations, and a co-existence of in- and anti-phase relation is not possible \cite{Ronsse2009}. In bipedal locomotion, the left hip joint moves in opposite phase to the right hip joint, but joints within the same leg move in-phase. Hence the coupling described here is not suitable for bipedal locomotion.
-\item \textbf{Coupling at the level of output variables}: If the coupling is done at the level of the output variables $\theta_l$ and $\theta_r$, bot in-phase and anti-phase relationships can be achieved within a network of oscillators \cite{Ronsse2009}. This is the coupling configuration that has been used in this paper. The equations of the oscillator, in this case become (only the equations of the right joint are given below):\\
+\item \textbf{Coupling at the level of output variables}: If the coupling is done at the level of the output variables $\theta_l$ and $\theta_r$, both in-phase and anti-phase relationships can be achieved within a network of oscillators \cite{Ronsse2009}. This is the coupling configuration that has been used in this paper. The equations of the oscillator, in this case become (only the equations of the right joint are given below):\\
 \begin{subequations}
 \label{eq:matsuoka_coupled}
 %
@@ -352,39 +353,31 @@ t_2 \dot{\phi_{r,j}} ={}& -\phi_{r,j} + [\psi_{r,j}]^+
 \end{align}
 %
 \end{subequations}
+In this setup equations \ref{eq:matsuoka_net_torque} and  \ref{eq:inertial_system} remain unchanged. $\mu$ represents the constant for homologous coupling (since it is similar to the effect induced by $\sigma$ but for the other joint) and $\nu$ is the constant for non-homologous coupling. All other symbols have the same meaning as in equations  \ref{eq:matsuoka_basic}-\ref{eq:matsuoka_phi} \cite{Ronsse2009}.
 \end{enumerate}
-
-
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering     %%% not \center
-\subfigure[Anti-phase oscillations]{\label{fig:b}\includegraphics[scale=0.35]{figures/4-1-anti-phase.eps}}
-\subfigure[In-phase oscillations]{\label{fig:a}\includegraphics[scale=0.35]{figures/4-2-in-phase.eps}}
+\subfigure[Anti-phase oscillations]{\label{fig:anti-phase}\includegraphics[scale=0.28]{figures/4-1-anti-phase.eps}}
+\subfigure[In-phase oscillations]{\label{fig:in-phase}\includegraphics[scale=0.28]{figures/4-2-in-phase.eps}}
 \caption{Anti-phase and in-phase oscillations}
 \label{fig:in-anti-phase}
 \end{figure}
-
-\subsection{Stable attractors}
-
-
+\forceindent By using equations \ref{eq:matsuoka_coupled}, \ref{eq:matsuoka_net_torque} and  \ref{eq:inertial_system}, the behavior of a system of coupled oscillators can be demonstrated, as depicted in figure \ref{fig:in-anti-phase}. The values of the constants used are $t_1=0.3$, $t_2= 2.5 \times t_1$ as per \cite{Ronsse2009} (same for left and right joints), $\beta=2.5$,  $\eta=2.5$, $\sigma=1.5$, $\theta^*=0.0$, $h_{\psi}=5.0$, $\mu=0.75$, $\nu=0.49$ and $u_{l,i}=u_{l,j}=u_{r,i}=u_{r,j}=1.0$. These values were selected based on \cite{Ronsse2009}.\\
+\forceindent For both the types of oscillations, the oscillator of the right joint is started a little while after the oscillator of the left joint, in order to introduce an initial phase difference. For 10 seconds, the two oscillators behave independently of each other and do not settle into any fixed phase-relationship. However as soon as the coupling is turned on at t=10s, the two oscillators converge to either anti-phase or in-phase oscillations. For anti-phase oscillations, the right oscillator is started 1.68s after the left oscillator and for the in-phase oscillation, it is started after 1.67s. Thus it is evident that the initial phase difference between the oscillators also plays a part in determining which kind of phase-relationship the oscillators converge to.\\
+\forceindent Another important characteristic of this system of coupled oscillators is that the final phase difference between the two oscillators can either be 0 (in-phase) or $\pi$ radians (anti-phase). No other phase-relationship is possible. In order to demonstrate this characteristic, the system of two oscillators was tested out with a range of different initial phase differences and time periods of oscillation. An empirical formula ($T=1.47t_1 + 2.92\sqrt{t_1} - 0.2304$) for calculating the joint oscillation time period in terms of the time constant $t_1$ was used \cite{Ronsse2009}. The final phase difference between the two waveforms was calculated by using the Hilbert Transform, whereby the waveform is converted into a vector of complex numbers. Figure \ref{fig:stable-attractors} confirms that for any initial phase difference and any time period of oscillation, the oscillators converge to either in-phase or anti-phase oscillations. From figure \ref{fig:stable-attractors} it can also be seen that the basin of attraction of in-phase oscillations is larger than that of anti-phase oscillations. This implies that finding a parameter set for anti-phase oscillations is more difficult than finding one for in-phase oscillations.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.55]{figures/5-1-stable-attractors.eps}
-\caption{Stable attractors for a broad range of time periods and initial phase difference between the two joints. As shown here, once the mutual coupling between the 2 joints is switched on, the joint oscillations converge to only 2 modes - either in-phase (0 phase difference) or anti-phase ($\pi$ phase difference).}
+\includegraphics[scale=0.4]{figures/5-1-stable-attractors.eps}
+\caption{Stable attractors for a broad range of time periods and initial phase difference between the two joints. As shown here, once the mutual coupling between the 2 joints is switched on, the joint oscillations converge to only 2 modes - either in-phase (0 radians phase difference) or anti-phase ($\pi$ radians phase difference).}
 \label{fig:stable-attractors}
 \end{figure}
-
-\section{Coupled Oscillators}
-\label{sec:Coupled_Oscillators}
 
 \section{Robot Joint Control}
 \label{sec:Robot_Joint_Control}
 
-\section{Walk Optimization}
-\label{sec:Walk_Optimization}
-
-\section{Discussion}
-\label{sec:Discussion}
+\section{Evolving a Nominal Gait}
+\label{sec:Evolving_a_Nominal_Gait}
 
 \section{Future Work}
 \label{sec:Future_Work}
@@ -392,7 +385,6 @@ t_2 \dot{\phi_{r,j}} ={}& -\phi_{r,j} + [\psi_{r,j}]^+
 \section{Conclusion}
 \label{sec:Conclusion}
 
-\cite{ronsse2009computational, williamson1998neural, matsuoka1987mechanisms, matsuoka1985sustained,Ishiguro2003}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hier werden - zum Ende des Textes - die bibliographischen Referenzen

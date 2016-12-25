@@ -12,9 +12,9 @@ function dy= inertial_ode( t, y)%, ft, tors )
     
     % Starting the second oscillator after a specified time to introduce a
     % phse difference between the 2 oscillators
-    % At t<1.7, in-phase oscillations result
-    % At t<1.8, out-of-phase oscillations result
-    if t<1.7;
+    % At t<1.67, in-phase oscillations result
+    % At t<1.68, out-of-phase oscillations result
+    if t<1.67;
         psi_r = 0;
     end
     dy = [y(2); -(gamma*y(2) + psi_l)/I; y(4); -(gamma*y(4) + psi_r)/I];
