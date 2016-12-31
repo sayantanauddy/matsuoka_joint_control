@@ -89,7 +89,7 @@ function [psi_t_l,psi_t_r] = matsuoka_torque(t, q_l, q_r)
     matlabSensedAngle_r = cellfun(@double,cp_r);
     
     % The oscillator differential equations
-    dpsi_l_i = (-psi_l_i -(beta*phi_l_i) -eta*max([0,psi_l_j])  -sigma*max([0, -(matlabSensedAngle_l - theta_star)]) - mu*max([0, -(matlabSensedAngle_r - theta_star)]) - nu*max([0, (matlabSensedAngle_r - theta_star)]) + u_i)*1/t1;
+    dpsi_l_i = (-psi_l_i -(beta*phi_l_i) -eta*max([0,psi_l_j])  -sigma*max([0,  -(matlabSensedAngle_l - theta_star)]) - mu*max([0, -(matlabSensedAngle_r - theta_star)]) - nu*max([0, (matlabSensedAngle_r - theta_star)]) + u_i)*1/t1;
     dpsi_l_j = (-psi_l_j -(beta*phi_l_j) -eta*max([0,psi_l_i])  -sigma*max([0, (matlabSensedAngle_l - theta_star)])  - mu*max([0, (matlabSensedAngle_r - theta_star)]) - nu*max([0, -(matlabSensedAngle_r - theta_star)]) + u_j)*1/t1;
 
     dpsi_r_i = (-psi_r_i -(beta*phi_r_i) -eta*max([0,psi_r_j])  -sigma*max([0, -(matlabSensedAngle_r - theta_star)]) - mu*max([0, -(matlabSensedAngle_l - theta_star)]) - nu*max([0, (matlabSensedAngle_l - theta_star)]) + u_i)*1/t1;
