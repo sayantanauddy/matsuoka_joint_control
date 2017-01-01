@@ -2,9 +2,6 @@
 % Global oscillators
 global l1 l2 l3 l4 l5 r1 r2 r3 r4 r5;
 
-% Global list of oscillators
-global oscillator_list_obj;
-
 % Variables required to calculate the time delta
 global time_prev;
 global time_now;
@@ -45,7 +42,7 @@ l3.couplings = containers.Map;
 l3.couplings('l2') = Coupling(0.75,0.49,'l2');
 
 l4.couplings = containers.Map;
-l4.couplings('l1') = Coupling(0.75,0.49,'l1'),
+l4.couplings('l1') = Coupling(0.75,0.49,'l1');
 l4.couplings('l5') = Coupling(0.75,0.49,'l5');
 
 l5.couplings = containers.Map;
@@ -64,12 +61,47 @@ r3.couplings = containers.Map;
 r3.couplings('r2') = Coupling(0.75,0.49,'r2');
 
 r4.couplings = containers.Map;
-r4.couplings('r1') = Coupling(0.75,0.49,'r1'),
+r4.couplings('r1') = Coupling(0.75,0.49,'r1');
 r4.couplings('r5') = Coupling(0.75,0.49,'r5');
 
 r5.couplings = containers.Map;
 r5.couplings('r4') = Coupling(0.75,0.49,'r4');
 
 % Set the time steps
-t = [0:0.01:30];
+t = [0:0.05:10];
 
+% Use custom ODE solver which uses fixed time steps
+% Matlab's in-built ODE solver uses variable time steps and sometimes goes
+% back in time to adjust the time step. This causes problems in the state
+% variables of the matsuoka oscillator.
+y=ode1(@inertial_ode,t,[ 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 ]);
+
+% Plot the results
+hold on;
+plot(1);
+p1 = plot(t,y(:,1));
+p3 = plot(t,y(:,3));
+p5 = plot(t,y(:,5));
+p7 = plot(t,y(:,7));
+p9 = plot(t,y(:,9));
+p11 = plot(t,y(:,11));
+p13 = plot(t,y(:,13));
+p15 = plot(t,y(:,15));
+p17 = plot(t,y(:,17));
+p19 = plot(t,y(:,19));
+p1(1).LineWidth = 2;
+p3(1).LineWidth = 2;
+p5(1).LineWidth = 2;
+p7(1).LineWidth = 2;
+p9(1).LineWidth = 2;
+p11(1).LineWidth = 2;
+p13(1).LineWidth = 2;
+p15(1).LineWidth = 2;
+p17(1).LineWidth = 2;
+p19(1).LineWidth = 2;
+xlabel('time (s)');
+ylabel('joint angle (rad)');
+set(gca,'fontsize',20);
+
+disp(y);
+whos y

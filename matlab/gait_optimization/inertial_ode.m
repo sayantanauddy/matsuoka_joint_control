@@ -1,4 +1,4 @@
-function dy= inertial_ode( t, y)%, ft, tors )
+function dy= inertial_ode( t, y)
 %INERTIAL_ODE Summary of this function goes here
 %   Detailed explanation goes here
     %y(1) => joint angle of l1
@@ -21,6 +21,7 @@ function dy= inertial_ode( t, y)%, ft, tors )
     %y(18) => joint velocity of r4
     %y(19) => joint angle of r5
     %y(20) => joint velocity of r5
+
 
     % Global oscillators
     global l1 l2 l3 l4 l5 r1 r2 r3 r4 r5;
