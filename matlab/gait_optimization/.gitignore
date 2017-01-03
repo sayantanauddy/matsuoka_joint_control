@@ -1,0 +1,11 @@
+*~
+*.swp
+*.pyc
+*.aux
+*.bbl
+*.blg
+*.log
+*.gz
+*.toc
+*.pdf
+

@@ -6,9 +6,19 @@ function [l1_psi,l2_psi,l3_psi,l4_psi,l5_psi,r1_psi,r2_psi,r3_psi,r4_psi,r5_psi]
     global l1 l2 l3 l4 l5 r1 r2 r3 r4 r5;
 
     % Variables required to calculate the time delta
-    global time_prev;
-    global time_now;
+    global time_prev time_now;
 
+    % Variable which controls when the inter-oscillator couplings are switched
+    % on
+    global coupling_start_time coupling_on;
+    global joint_start_time;
+    
+    if t>coupling_start_time
+        coupling_on = true;
+    else
+        coupling_on = false;
+    end
+        
     % Calculate the time delta
     time_now = t;
     step_time = time_now - time_prev;
@@ -16,10 +26,32 @@ function [l1_psi,l2_psi,l3_psi,l4_psi,l5_psi,r1_psi,r2_psi,r3_psi,r4_psi,r5_psi]
 
     disp(t);
 
-    % At t=10s switch on the mutual coupling between the 2 oscillators - TO DO
-
-
-    % Repititive code. Find a way to do this using a function
+% TO-DO    
+%     global joints_activated;
+%     joints_activated = false;
+%     
+%     if t<joint_start_time
+%         % No need to sense/apply angles on robot
+%     elseif t>joint_start_time && ~joints_activated
+%         % No need to sense robot angles
+%         % Get the current theta from the oscillators
+%         % Scale each respective joint from 0 to current angle (in what
+%         % time?)
+%         % joints_activated = true
+%     elseif t>joint_start_time && joints_activated
+%         % Apply incoming angles to joint
+%         % Sleep for the appropriate duration
+%         % Sense the robot joint angles and use this in the next step
+%         % Validate the joint angles
+%     end
+%     
+%     Check if the robot has fallen
+%     if robot_has_fallen
+%         % Throw exception
+%         % This exception will be caught in eval_gait_fitness
+%     end
+    
+    
     % create a keystore of q_r1...
     % create a keystore of r1.theta_star....
     % Then use the coupling key to access
