@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.17)  30 JAN 2017 13:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.17)  11 FEB 2017 20:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -555,10 +555,10 @@ e
 
 ] [3]
 Package epstopdf Info: Source file: <figures/neural_comp.eps>
-(epstopdf)                    date: 2016-12-27 05:09:55
+(epstopdf)                    date: 2016-12-27 00:39:55
 (epstopdf)                    size: 183487 bytes
 (epstopdf)             Output file: <figures/neural_comp-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-12-27 05:10:14
+(epstopdf)                    date: 2016-12-27 00:40:14
 (epstopdf)                    size: 99797 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/neural_comp-eps-co
 nverted-to.pdf figures/neural_comp.eps>
@@ -573,11 +573,11 @@ Package pdftex.def Info: figures/neural_comp-eps-converted-to.pdf used on input
  line 221.
 (pdftex.def)             Requested size: 207.20926pt x 155.27646pt.
 Package epstopdf Info: Source file: <figures/half_center_model.eps>
-(epstopdf)                    date: 2016-12-27 05:22:49
+(epstopdf)                    date: 2016-12-27 00:52:49
 (epstopdf)                    size: 6250 bytes
 (epstopdf)             Output file: <figures/half_center_model-eps-converted-to
 .pdf>
-(epstopdf)                    date: 2016-12-27 05:23:13
+(epstopdf)                    date: 2016-12-27 00:53:13
 (epstopdf)                    size: 4278 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/half_center_model-
 eps-converted-to.pdf figures/half_center_model.eps>
@@ -633,11 +633,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 285--286
 [7]
 Package epstopdf Info: Source file: <figures/1-2-torque-for-change-average-posi
 tion.eps>
-(epstopdf)                    date: 2016-12-23 05:23:56
+(epstopdf)                    date: 2016-12-23 00:53:56
 (epstopdf)                    size: 67825 bytes
 (epstopdf)             Output file: <figures/1-2-torque-for-change-average-posi
 tion-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-12-23 05:24:40
+(epstopdf)                    date: 2016-12-23 00:54:40
 (epstopdf)                    size: 25062 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/1-2-torque-for-cha
 nge-average-position-eps-converted-to.pdf figures/1-2-torque-for-change-average
@@ -655,11 +655,11 @@ Package pdftex.def Info: figures/1-2-torque-for-change-average-position-eps-con
 verted-to.pdf used on input line 291.
 (pdftex.def)             Requested size: 206.99942pt x 109.40193pt.
 Package epstopdf Info: Source file: <figures/1-1-change-average-position.eps>
-(epstopdf)                    date: 2016-12-23 05:24:09
+(epstopdf)                    date: 2016-12-23 00:54:09
 (epstopdf)                    size: 109637 bytes
 (epstopdf)             Output file: <figures/1-1-change-average-position-eps-co
 nverted-to.pdf>
-(epstopdf)                    date: 2016-12-23 05:24:41
+(epstopdf)                    date: 2016-12-23 00:54:41
 (epstopdf)                    size: 27951 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/1-1-change-average
 -position-eps-converted-to.pdf figures/1-1-change-average-position.eps>
@@ -679,11 +679,11 @@ df used on input line 292.
 -average-position-eps-converted-to.pdf> <./figures/1-1-change-average-position-
 eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/2-1-change-in-torque.eps>
-(epstopdf)                    date: 2016-12-23 05:42:42
+(epstopdf)                    date: 2016-12-23 01:12:42
 (epstopdf)                    size: 67694 bytes
 (epstopdf)             Output file: <figures/2-1-change-in-torque-eps-converted
 -to.pdf>
-(epstopdf)                    date: 2016-12-23 05:43:38
+(epstopdf)                    date: 2016-12-23 01:13:38
 (epstopdf)                    size: 25500 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/2-1-change-in-torq
 ue-eps-converted-to.pdf figures/2-1-change-in-torque.eps>
@@ -699,11 +699,11 @@ Package pdftex.def Info: figures/2-1-change-in-torque-eps-converted-to.pdf used
  on input line 302.
 (pdftex.def)             Requested size: 206.99942pt x 109.40193pt.
 Package epstopdf Info: Source file: <figures/2-2-change-in-angle.eps>
-(epstopdf)                    date: 2016-12-23 05:46:22
+(epstopdf)                    date: 2016-12-23 01:16:22
 (epstopdf)                    size: 108767 bytes
 (epstopdf)             Output file: <figures/2-2-change-in-angle-eps-converted-
 to.pdf>
-(epstopdf)                    date: 2016-12-23 05:46:42
+(epstopdf)                    date: 2016-12-23 01:16:42
 (epstopdf)                    size: 28471 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/2-2-change-in-angl
 e-eps-converted-to.pdf figures/2-2-change-in-angle.eps>
@@ -718,11 +718,11 @@ Package pdftex.def Info: figures/2-2-change-in-angle-eps-converted-to.pdf used
 on input line 303.
 (pdftex.def)             Requested size: 206.99942pt x 109.40193pt.
 Package epstopdf Info: Source file: <figures/3-1-changing-freq-torque.eps>
-(epstopdf)                    date: 2016-12-23 06:00:03
+(epstopdf)                    date: 2016-12-23 01:30:03
 (epstopdf)                    size: 119689 bytes
 (epstopdf)             Output file: <figures/3-1-changing-freq-torque-eps-conve
 rted-to.pdf>
-(epstopdf)                    date: 2016-12-23 06:00:46
+(epstopdf)                    date: 2016-12-23 01:30:46
 (epstopdf)                    size: 37557 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/3-1-changing-freq-
 torque-eps-converted-to.pdf figures/3-1-changing-freq-torque.eps>
@@ -738,11 +738,11 @@ Package pdftex.def Info: figures/3-1-changing-freq-torque-eps-converted-to.pdf
 used on input line 312.
 (pdftex.def)             Requested size: 206.99942pt x 109.40193pt.
 Package epstopdf Info: Source file: <figures/3-2-changing-freq-pos.eps>
-(epstopdf)                    date: 2016-12-23 06:00:12
+(epstopdf)                    date: 2016-12-23 01:30:12
 (epstopdf)                    size: 206370 bytes
 (epstopdf)             Output file: <figures/3-2-changing-freq-pos-eps-converte
 d-to.pdf>
-(epstopdf)                    date: 2016-12-23 06:00:47
+(epstopdf)                    date: 2016-12-23 01:30:47
 (epstopdf)                    size: 48311 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/3-2-changing-freq-
 pos-eps-converted-to.pdf figures/3-2-changing-freq-pos.eps>
@@ -766,11 +766,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 324--325
 
 [10]
 Package epstopdf Info: Source file: <figures/4-1-anti-phase.eps>
-(epstopdf)                    date: 2016-12-24 23:56:17
+(epstopdf)                    date: 2016-12-24 19:26:17
 (epstopdf)                    size: 118874 bytes
 (epstopdf)             Output file: <figures/4-1-anti-phase-eps-converted-to.pd
 f>
-(epstopdf)                    date: 2016-12-24 23:56:39
+(epstopdf)                    date: 2016-12-24 19:26:39
 (epstopdf)                    size: 47870 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/4-1-anti-phase-eps
 -converted-to.pdf figures/4-1-anti-phase.eps>
@@ -785,11 +785,11 @@ Package pdftex.def Info: figures/4-1-anti-phase-eps-converted-to.pdf used on in
 put line 359.
 (pdftex.def)             Requested size: 202.91672pt x 136.30832pt.
 Package epstopdf Info: Source file: <figures/4-2-in-phase.eps>
-(epstopdf)                    date: 2016-12-24 23:58:07
+(epstopdf)                    date: 2016-12-24 19:28:07
 (epstopdf)                    size: 117062 bytes
 (epstopdf)             Output file: <figures/4-2-in-phase-eps-converted-to.pdf>
 
-(epstopdf)                    date: 2016-12-25 00:00:03
+(epstopdf)                    date: 2016-12-24 19:30:03
 (epstopdf)                    size: 46256 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/4-2-in-phase-eps-c
 onverted-to.pdf figures/4-2-in-phase.eps>
@@ -804,11 +804,11 @@ Package pdftex.def Info: figures/4-2-in-phase-eps-converted-to.pdf used on inpu
 t line 360.
 (pdftex.def)             Requested size: 201.23042pt x 128.15793pt.
 Package epstopdf Info: Source file: <figures/5-1-stable-attractors.eps>
-(epstopdf)                    date: 2016-11-14 04:51:05
+(epstopdf)                    date: 2016-11-14 00:21:05
 (epstopdf)                    size: 164429 bytes
 (epstopdf)             Output file: <figures/5-1-stable-attractors-eps-converte
 d-to.pdf>
-(epstopdf)                    date: 2016-11-14 04:51:12
+(epstopdf)                    date: 2016-11-14 00:21:12
 (epstopdf)                    size: 78449 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/5-1-stable-attract
 ors-eps-converted-to.pdf figures/5-1-stable-attractors.eps>
@@ -854,11 +854,11 @@ Package pdftex.def Info: figures/nao_joint_motion.png used on input line 396.
 (pdftex.def)             Requested size: 188.37567pt x 59.01794pt.
 Package epstopdf Info: Source file: <figures/double-joint-in-phase-diff-freq.ep
 s>
-(epstopdf)                    date: 2016-11-18 00:02:12
+(epstopdf)                    date: 2016-11-17 19:32:12
 (epstopdf)                    size: 120596 bytes
 (epstopdf)             Output file: <figures/double-joint-in-phase-diff-freq-ep
 s-converted-to.pdf>
-(epstopdf)                    date: 2016-12-26 06:58:42
+(epstopdf)                    date: 2016-12-26 02:28:42
 (epstopdf)                    size: 49457 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/double-joint-in-ph
 ase-diff-freq-eps-converted-to.pdf figures/double-joint-in-phase-diff-freq.eps>
@@ -877,9 +877,30 @@ to.pdf used on input line 397.
 (pdftex.def)             Requested size: 236.56863pt x 125.02965pt.
  [14 <./figures/nao_joint_motion.png> <./figures/double-joint-in-phase-diff-fre
 q-eps-converted-to.pdf>]
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 407.
- (./Bioinspired_Bipedal_Locomotion.bbl
+Package epstopdf Info: Source file: <figures/future_work_oscillator_network.eps
+>
+(epstopdf)                    date: 2017-02-09 17:06:39
+(epstopdf)                    size: 102772 bytes
+(epstopdf)             Output file: <figures/future_work_oscillator_network-eps
+-converted-to.pdf>
+(epstopdf)                    date: 2017-02-09 17:06:44
+(epstopdf)                    size: 53663 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/future_work_oscill
+ator_network-eps-converted-to.pdf figures/future_work_oscillator_network.eps>
+(epstopdf)             \includegraphics on input line 410.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/future_work_oscillator_network-eps-converted-to.pdf, id=131, 569.12625
+pt x 426.59375pt>
+File: figures/future_work_oscillator_network-eps-converted-to.pdf Graphic file 
+(type pdf)
+
+<use figures/future_work_oscillator_network-eps-converted-to.pdf>
+Package pdftex.def Info: figures/future_work_oscillator_network-eps-converted-t
+o.pdf used on input line 410.
+(pdftex.def)             Requested size: 284.56242pt x 213.29634pt.
+ [15 <./figures/future_work_oscillator_network-eps-converted-to.pdf>]
+(./Bioinspired_Bipedal_Locomotion.bbl
 Underfull \hbox (badness 3646) in paragraph at lines 4--9
 []\OT1/cmr/m/n/12 Sayantan Au-ddy.  Driv-ing the joints of a nao robot us-ing c
 ou-
@@ -891,7 +912,9 @@ Underfull \hbox (badness 1270) in paragraph at lines 4--9
 ww . youtube . com / playlist ? list =
  []
 
-[15] [16]
+[16] [17]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 168.
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 170.
 
@@ -908,16 +931,16 @@ Underfull \hbox (badness 1460) in paragraph at lines 167--173
 
  []
 
-[17]
+[18]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ” in font cmr12!
-) [18] (./Bioinspired_Bipedal_Locomotion.aux) ) 
+) [19] (./Bioinspired_Bipedal_Locomotion.aux) ) 
 Here is how much of TeX's memory you used:
- 6572 strings out of 493304
- 92597 string characters out of 6139871
- 177971 words of memory out of 5000000
- 9850 multiletter control sequences out of 15000+600000
+ 6577 strings out of 493304
+ 92862 string characters out of 6139871
+ 177973 words of memory out of 5000000
+ 9854 multiletter control sequences out of 15000+600000
  11754 words of font info for 44 fonts, out of 8000000 for 9000
  958 hyphenation exceptions out of 8191
  38i,16n,43p,1729b,316s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -934,11 +957,11 @@ texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Bioinspired_Bipedal_Locomotion.pdf (20 pages, 1767189 bytes).
+Output written on Bioinspired_Bipedal_Locomotion.pdf (21 pages, 1821592 bytes).
 
 PDF statistics:
- 189 PDF objects out of 1000 (max. 8388607)
- 127 compressed objects within 2 object streams
+ 195 PDF objects out of 1000 (max. 8388607)
+ 131 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
