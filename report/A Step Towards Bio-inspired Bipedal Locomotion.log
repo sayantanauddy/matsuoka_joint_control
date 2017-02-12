@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.17)  11 FEB 2017 20:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.17)  13 FEB 2017 00:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Bioinspired_Bipedal_Locomotion.tex
-(./Bioinspired_Bipedal_Locomotion.tex
+**"A Step Towards Bio-inspired Bipedal Locomotion.tex"
+(./A Step Towards Bio-inspired Bipedal Locomotion.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -435,8 +435,8 @@ Package: tabulary 2008/12/01 v0.9 tabulary package (DPC)
 \c@axiom=\count146
 \c@definition=\count147
 
-(./Bioinspired_Bipedal_Locomotion.aux)
-\openout1 = `Bioinspired_Bipedal_Locomotion.aux'.
+(./A Step Towards Bio-inspired Bipedal Locomotion.aux)
+\openout1 = `"A Step Towards Bio-inspired Bipedal Locomotion.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 131.
 LaTeX Font Info:    ... okay on input line 131.
@@ -547,9 +547,9 @@ e
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-(./Bioinspired_Bipedal_Locomotion.toc)
+(./A Step Towards Bio-inspired Bipedal Locomotion.toc)
 \tf@toc=\write5
-\openout5 = `Bioinspired_Bipedal_Locomotion.toc'.
+\openout5 = `"A Step Towards Bio-inspired Bipedal Locomotion.toc"'.
 
  [1] [2
 
@@ -824,29 +824,34 @@ Package pdftex.def Info: figures/5-1-stable-attractors-eps-converted-to.pdf use
 d on input line 370.
 (pdftex.def)             Requested size: 245.11765pt x 146.04675pt.
  [11 <./figures/4-1-anti-phase-eps-converted-to.pdf> <./figures/4-2-in-phase-ep
-s-converted-to.pdf>] <figures/robot_joint_control.png, id=111, 1017.8025pt x 74
-8.7975pt>
-File: figures/robot_joint_control.png Graphic file (type png)
+s-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/robot_joint_control.eps>
+(epstopdf)                    date: 2017-02-12 23:48:09
+(epstopdf)                    size: 2921296 bytes
+(epstopdf)             Output file: <figures/robot_joint_control-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2017-02-12 23:48:19
+(epstopdf)                    size: 510842 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/robot_joint_contro
+l-eps-converted-to.pdf figures/robot_joint_control.eps>
+(epstopdf)             \includegraphics on input line 382.
+Package epstopdf Info: Output file is already uptodate.
 
-<use figures/robot_joint_control.png>
-Package pdftex.def Info: figures/robot_joint_control.png used on input line 382
-.
-(pdftex.def)             Requested size: 458.0069pt x 336.95576pt.
-
-Overfull \hbox (38.84068pt too wide) in paragraph at lines 382--383
- [][] 
- []
-
+<figures/robot_joint_control-eps-converted-to.pdf, id=111, 796.9775pt x 597.231
+25pt>
+File: figures/robot_joint_control-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/robot_joint_control-eps-converted-to.pdf>
+Package pdftex.def Info: figures/robot_joint_control-eps-converted-to.pdf used 
+on input line 382.
+(pdftex.def)             Requested size: 398.48776pt x 298.61488pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 389--390
 
  []
 
-[12 <./figures/5-1-stable-attractors-eps-converted-to.pdf>]
-Underfull \vbox (badness 1990) has occurred while \output is active []
-
- [13 <./figures/robot_joint_control.png (PNG copy)>]
-<figures/nao_joint_motion.png, id=121, 1569.865pt x 491.8375pt>
+[12 <./figures/5-1-stable-attractors-eps-converted-to.pdf>] [13 <./figures/robo
+t_joint_control-eps-converted-to.pdf>]
+<figures/nao_joint_motion.png, id=124, 1569.865pt x 491.8375pt>
 File: figures/nao_joint_motion.png Graphic file (type png)
 
 <use figures/nao_joint_motion.png>
@@ -866,7 +871,7 @@ ase-diff-freq-eps-converted-to.pdf figures/double-joint-in-phase-diff-freq.eps>
 (epstopdf)             \includegraphics on input line 397.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/double-joint-in-phase-diff-freq-eps-converted-to.pdf, id=122, 985.6825
+<figures/double-joint-in-phase-diff-freq-eps-converted-to.pdf, id=125, 985.6825
 pt x 520.94624pt>
 File: figures/double-joint-in-phase-diff-freq-eps-converted-to.pdf Graphic file
  (type pdf)
@@ -875,6 +880,9 @@ File: figures/double-joint-in-phase-diff-freq-eps-converted-to.pdf Graphic file
 Package pdftex.def Info: figures/double-joint-in-phase-diff-freq-eps-converted-
 to.pdf used on input line 397.
 (pdftex.def)             Requested size: 236.56863pt x 125.02965pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [14 <./figures/nao_joint_motion.png> <./figures/double-joint-in-phase-diff-fre
 q-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/future_work_oscillator_network.eps
@@ -890,7 +898,7 @@ ator_network-eps-converted-to.pdf figures/future_work_oscillator_network.eps>
 (epstopdf)             \includegraphics on input line 410.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/future_work_oscillator_network-eps-converted-to.pdf, id=131, 569.12625
+<figures/future_work_oscillator_network-eps-converted-to.pdf, id=134, 569.12625
 pt x 426.59375pt>
 File: figures/future_work_oscillator_network-eps-converted-to.pdf Graphic file 
 (type pdf)
@@ -900,7 +908,11 @@ Package pdftex.def Info: figures/future_work_oscillator_network-eps-converted-t
 o.pdf used on input line 410.
 (pdftex.def)             Requested size: 284.56242pt x 213.29634pt.
  [15 <./figures/future_work_oscillator_network-eps-converted-to.pdf>]
-(./Bioinspired_Bipedal_Locomotion.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 420--423
+
+ []
+
+(./A Step Towards Bio-inspired Bipedal Locomotion.bbl
 Underfull \hbox (badness 3646) in paragraph at lines 4--9
 []\OT1/cmr/m/n/12 Sayantan Au-ddy.  Driv-ing the joints of a nao robot us-ing c
 ou-
@@ -912,7 +924,11 @@ Underfull \hbox (badness 1270) in paragraph at lines 4--9
 ww . youtube . com / playlist ? list =
  []
 
-[16] [17]
+
+Underfull \vbox (badness 8075) has occurred while \output is active []
+
+ [16]
+[17] [18]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 168.
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
@@ -931,37 +947,36 @@ Underfull \hbox (badness 1460) in paragraph at lines 167--173
 
  []
 
-[18]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ” in font cmr12!
-) [19] (./Bioinspired_Bipedal_Locomotion.aux) ) 
+) [19] (./A Step Towards Bio-inspired Bipedal Locomotion.aux) ) 
 Here is how much of TeX's memory you used:
  6577 strings out of 493304
- 92862 string characters out of 6139871
- 177973 words of memory out of 5000000
+ 93140 string characters out of 6139871
+ 177954 words of memory out of 5000000
  9854 multiletter control sequences out of 15000+600000
  11754 words of font info for 44 fonts, out of 8000000 for 9000
  958 hyphenation exceptions out of 8191
- 38i,16n,43p,1729b,316s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Bioinspired_Bipedal_Locomotion.pdf (21 pages, 1821592 bytes).
-
+ 38i,16n,43p,1747b,314s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on "A Step Towards Bio-inspired Bipedal Locomotion.pdf" (21 page
+s, 2158039 bytes).
 PDF statistics:
- 195 PDF objects out of 1000 (max. 8388607)
- 131 compressed objects within 2 object streams
+ 198 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
