@@ -7,5 +7,5 @@
 Biped locomotion using Central Pattern Generators.log
 *.gz
 *.toc
-*.pdf
+*eps-converted-to.pdf
 
